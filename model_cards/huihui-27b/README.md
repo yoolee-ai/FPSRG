@@ -30,6 +30,8 @@ Pair the model with its six-dimensional vector catalog to select measured person
 
 [中文](README.zh-CN.md) · [Runtime & demo](https://github.com/yoolee-ai/FPSRG) · [Upstream model](https://huggingface.co/huihui-ai/Huihui-Qwen3.8-27B-abliterated)
 
+**Get the weights:** email [prm21@mails.tsinghua.edu.cn](mailto:prm21@mails.tsinghua.edu.cn) for the trained Huihui model or other project weights. The weights will also be released through the [FPSRG GitHub repository](https://github.com/yoolee-ai/FPSRG) later.
+
 ## A population, not a pile of checkpoints
 
 | Capability | What you can do |
@@ -153,7 +155,7 @@ print(tokenizer.decode(
 ))
 ```
 
-This example runs the first-person checkpoint. Calibrated profiles and emotion controls use the [FPSRG vector runtime](https://github.com/yoolee-ai/FPSRG/tree/main/modules/vector_vllm) and its `huihui-six-thinking` artifact. The code repository currently requires company access.
+This example runs the first-person checkpoint. Calibrated profiles and emotion controls use the [FPSRG vector runtime](https://github.com/yoolee-ai/FPSRG/tree/main/modules/vector_vllm) and its `huihui-six-thinking` artifact.
 
 ## Model details
 

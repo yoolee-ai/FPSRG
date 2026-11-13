@@ -2,7 +2,9 @@
 
 [English](README.md)
 
-权重放公司模型存储，Git 保留对应版本的文件校验清单。
+本目录提供各格点对应模型版本的文件校验清单，权重与代码分开存储。
+
+如需我们训练的灰灰权重或本项目使用的其他模型权重，请邮件联系 **[prm21@mails.tsinghua.edu.cn](mailto:prm21@mails.tsinghua.edu.cn)**。权重后续也会通过本 GitHub 仓库发布。
 
 | 目录 | 内容 | 约占空间 |
 |---|---|---:|
@@ -21,7 +23,7 @@ python scripts/install_weights.py --name persononly-lora --source /data/model-st
 
 脚本逐文件校验大小和 SHA-256；已有相同文件自动跳过；不同文件不会覆盖。加 `--verify-only` 只检查、不复制。
 
-资源配置使用 `${FPSRG_HOME}/models/...`，也可以把公司模型存储挂载到这些目录。Git 仓库不包含权重文件。远程分发建议使用公司私有对象存储或 Hugging Face 私有模型库，并保留本目录中的校验清单；当前没有公开下载链接。
+资源配置使用 `${FPSRG_HOME}/models/...`，也可以把模型存储挂载到这些目录。Git 仓库当前提供校验清单与安装工具，配套权重请通过上述邮箱获取。
 
 ## 版本
 

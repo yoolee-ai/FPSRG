@@ -2,7 +2,9 @@
 
 [中文](README.zh-CN.md)
 
-Keep weights in a company model store, separately from Git. This directory contains file hashes for the exact snapshots used by the released catalogs.
+This directory contains file hashes for the exact model snapshots used by the released catalogs. Weights are stored separately from the code.
+
+For the trained Huihui weights or other model weights used in this project, email **[prm21@mails.tsinghua.edu.cn](mailto:prm21@mails.tsinghua.edu.cn)**. The weights will also be released through this GitHub repository later.
 
 | Directory | Contents | Approximate size |
 |---|---|---:|
@@ -21,7 +23,7 @@ python scripts/install_weights.py --name persononly-lora --source /data/model-st
 
 The installer verifies file sizes and SHA-256, resumes matching files, and refuses to replace a different existing file. To check a mounted directory without copying, add `--verify-only`.
 
-Each artifact manifest uses `${FPSRG_HOME}/models/...`; a local mount at this location works as well. Model weights are not present in the Git repository. For remote distribution, use an access-controlled object store or a private Hugging Face model repository and retain these file hashes. The repository does not contain a public model download URL.
+Each artifact manifest uses `${FPSRG_HOME}/models/...`; a local mount at this location works as well. The Git repository currently contains the verification manifests and installation tools; request the matching weights using the email above.
 
 ## Versions
 

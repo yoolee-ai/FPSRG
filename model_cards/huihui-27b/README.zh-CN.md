@@ -12,6 +12,8 @@ FPSRG–Huihui–27B 面向第一人称的交互模拟。训练覆盖日常交�
 
 [English](README.md) · [推理与 Demo](https://github.com/yoolee-ai/FPSRG) · [上游模型](https://huggingface.co/huihui-ai/Huihui-Qwen3.8-27B-abliterated)
 
+**权重获取：** 如需我们训练的灰灰权重或其他项目模型权重，请邮件联系 [prm21@mails.tsinghua.edu.cn](mailto:prm21@mails.tsinghua.edu.cn)。权重后续也会通过 [FPSRG GitHub 仓库](https://github.com/yoolee-ai/FPSRG)发布。
+
 ## 构建一群人，共用一份权重
 
 | 功能 | 用法 |
@@ -135,7 +137,7 @@ print(tokenizer.decode(
 ))
 ```
 
-这个例子直接运行第一人称模型。人格匹配和情绪控制使用 [FPSRG 向量运行时](https://github.com/yoolee-ai/FPSRG/tree/main/modules/vector_vllm)及 `huihui-six-thinking` 资源。代码仓库当前需要公司访问权限。
+这个例子直接运行第一人称模型。人格匹配和情绪控制使用 [FPSRG 向量运行时](https://github.com/yoolee-ai/FPSRG/tree/main/modules/vector_vllm)及 `huihui-six-thinking` 资源。
 
 ## 版本信息
 

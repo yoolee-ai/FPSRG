@@ -10,6 +10,10 @@
 
 创建不同偏好的消费者、模型训练伙伴和交互角色；在同一张卡上混批处理不同人格、提示词与历史。[灰灰模型首页](model_cards/huihui-27b/README.zh-CN.md)展示原始对话、情绪控制及应用流程。
 
+## 权重获取与联系
+
+如需我们训练的灰灰权重或本项目使用的其他模型权重，请邮件联系 **[prm21@mails.tsinghua.edu.cn](mailto:prm21@mails.tsinghua.edu.cn)**。权重后续也会通过本 GitHub 仓库发布。
+
 ## 项目内容
 
 | 目录 | 内容 |
@@ -67,4 +71,4 @@ FPSRG/
 **FPSRG: Heterogeneous User Simulation — First-Person Post-Training and Multidimensional Semantic Response Grids**  
 Ruimin Pei、Haibo Liu、Fan Zhang、Xunhua Guo。
 
-本仓库为公司内部交付版本，包含实现及指定实验资源。上游组件见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
+本仓库包含方法实现及配套实验资源。上游组件见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。

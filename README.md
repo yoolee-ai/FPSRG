@@ -10,6 +10,10 @@ Build heterogeneous model profiles, measure their joint responses, and serve the
 
 Create consumers, training partners and interactive characters with different priorities. Mix different personalities, prompts and histories in the same GPU batch. Explore the [Huihui model page](model_cards/huihui-27b/README.md) for original dialogue examples, emotion controls and application workflows.
 
+## Model weights & contact
+
+For the trained Huihui weights or other model weights used in this project, email **[prm21@mails.tsinghua.edu.cn](mailto:prm21@mails.tsinghua.edu.cn)**. The weights will also be released through this GitHub repository later.
+
 ## Contents
 
 | Directory | Contents |
@@ -67,4 +71,4 @@ Set `FPSRG_HOME` to this checkout. Model directories can be mounted from an inte
 **FPSRG: Heterogeneous User Simulation — First-Person Post-Training and Multidimensional Semantic Response Grids**  
 Ruimin Pei, Haibo Liu, Fan Zhang, Xunhua Guo.
 
-This repository is the private company delivery of the implementation and selected artifacts. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for upstream components.
+This repository contains the implementation and selected experiment artifacts. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for upstream components.
