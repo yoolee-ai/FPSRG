@@ -1,0 +1,12 @@
+FPSRG-Huihui-27B
+Copyright 2026 FPSRG contributors.
+
+Derived from huihui-ai/Huihui-Qwen3.8-27B-abliterated,
+revision 739e3c5b89849f6c238ce1e5b70008612ae42cdd.
+The upstream model is distributed under the Apache License, Version 2.0.
+The accompanying LICENSE retains the upstream Alibaba Cloud attribution.
+
+Modifications: two epochs of first-person post-training on 1,500 records,
+updating all language parameters. Visual parameters were retained.
+The separately supplied FPSRG runtime adds personality vector routing,
+measured catalog matching, and emotion overlays.

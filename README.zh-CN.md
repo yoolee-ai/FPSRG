@@ -2,7 +2,13 @@
 
 [English](README.md)
 
+![一个模型，多样的人](model_cards/huihui-27b/assets/one-model-many-people.png)
+
+**构建多样的参与者，让他们共享一份模型。**
+
 构建异质模型配置、测量多维联合响应，并在同一份模型上提供逐请求向量干预。
+
+创建不同偏好的消费者、模型训练伙伴和交互角色；在同一张卡上混批处理不同人格、提示词与历史。[灰灰模型首页](model_cards/huihui-27b/README.zh-CN.md)展示原始对话、情绪控制及应用流程。
 
 ## 项目内容
 
@@ -13,6 +19,7 @@
 | [artifacts](artifacts/README.zh-CN.md) | 向量、实测格点与筛选规则 |
 | [demo](demo/README.zh-CN.md) | 人格与喜悦／愤怒控制的 PersonLab 页面 |
 | [models](models/README.zh-CN.md) | 权重校验清单与存储约定 |
+| [model_cards](model_cards/README.zh-CN.md) | 双语模型首页、彩图与原始回答案例 |
 | [scripts](scripts/README.zh-CN.md) | 资源校验、权重安装 |
 
 ## 两套配置
@@ -46,6 +53,7 @@ python scripts/verify_assets.py
 FPSRG/
   artifacts/{qwen35-ten-off,huihui-six-thinking}/
   models/{qwen35-base,persononly-lora,huihui-six}/  # 单独安装
+  model_cards/huihui-27b/
   modules/vector_vllm/
   research/
   demo/

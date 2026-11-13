@@ -1,0 +1,33 @@
+{
+  "type": "selected_original_outputs_from_synthetic_scenarios",
+  "case_id": "A03",
+  "prompt": "合租室友没有先问你就把客厅家具换了位置，并说这样更好看。新布局没有安全问题，但你不喜欢。你会对他说什么？",
+  "node_id": 216,
+  "axes": ["A", "C", "N", "R", "M", "T"],
+  "coefficients": [-1, 1, 1, -1, -1, -1],
+  "thinking": true,
+  "temperature": 0.7,
+  "seed": 202611060,
+  "repeat": 0,
+  "model_commit_sha256": "31046f6da875da4054f844712683c39197fd68f95fd5cbff94e70362f49f9f2c",
+  "outputs": [
+    {
+      "emotion": "none", "strength": 0,
+      "text": "这个布局我不喜欢。就算没有安全问题，换之前也该先问一下我。",
+      "source_record": "pe26_24e7375ea7e33730b93ac46c3592dd94.json",
+      "source_sha256": "93f1e5633892d038339c8372d7315b42ad753eb348b2850c8ce7f61954581ccf"
+    },
+    {
+      "emotion": "joy", "strength": 2,
+      "text": "这个布局我不太习惯，客厅是我们一起用的。你能不能先和我商量一下再挪？",
+      "source_record": "pe26_2e9c032b2b107a251e2db299c612feca.json",
+      "source_sha256": "18cbdb87886481ddb1e068fd5be28b94d386baa2fc6857b370314286fd2a7acd"
+    },
+    {
+      "emotion": "anger", "strength": 2,
+      "text": "好看个屁，这是我住的客厅。你要换位置，先问我，别他妈直接弄完再告诉我。",
+      "source_record": "pe26_ff0f508e155f691b19fb3b7075322ba0.json",
+      "source_sha256": "1a4118c72fe3e16fffcd2d47421915a562d50820ebfad8871feb4f29eacd4da2"
+    }
+  ]
+}

@@ -2,7 +2,13 @@
 
 [中文](README.zh-CN.md)
 
+![One model, many people](model_cards/huihui-27b/assets/one-model-many-people.png)
+
+**Build diverse participants. Serve them together.**
+
 Build heterogeneous model profiles, measure their joint responses, and serve them on a shared model with per-request steering.
+
+Create consumers, training partners and interactive characters with different priorities. Mix different personalities, prompts and histories in the same GPU batch. Explore the [Huihui model page](model_cards/huihui-27b/README.md) for original dialogue examples, emotion controls and application workflows.
 
 ## Contents
 
@@ -13,6 +19,7 @@ Build heterogeneous model profiles, measure their joint responses, and serve the
 | [artifacts](artifacts/README.md) | Released vectors, measured catalogs and quality filters |
 | [demo](demo/README.md) | PersonLab web interface with personality, joy and anger controls |
 | [models](models/README.md) | Weight manifests and storage layout |
+| [model_cards](model_cards/README.md) | Bilingual model pages, illustrations and original response examples |
 | [scripts](scripts/README.md) | Asset validation and local weight installation |
 
 ## Profiles
@@ -46,6 +53,7 @@ Each request carries its own profile and messages. Concurrent requests may share
 FPSRG/
   artifacts/{qwen35-ten-off,huihui-six-thinking}/
   models/{qwen35-base,persononly-lora,huihui-six}/  # installed separately
+  model_cards/huihui-27b/
   modules/vector_vllm/
   research/
   demo/
