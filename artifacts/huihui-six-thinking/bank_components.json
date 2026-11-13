@@ -1,0 +1,18 @@
+{
+  "base_rows": 729,
+  "layers": [
+    16,
+    24,
+    32,
+    40
+  ],
+  "emotion_layers": {
+    "joy": 16,
+    "anger": 24
+  },
+  "files": {
+    "base_bank.npz": "5a263ae0856daf67ed6a3ee4be28c14075e317c4bda6a41fd62d72a172e074e7",
+    "emotion_vectors.npz": "5cd5484545c0dec17e7ca52d9e471a88298269267503ca3bb58652d21524fe44"
+  },
+  "output_sha256": "b6a87e73d01de228b4320cfbdbd0f14e6f4b020ebc3b5f051c5de96d004336ee"
+}

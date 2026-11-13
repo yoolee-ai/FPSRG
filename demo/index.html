@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <meta name="theme-color" content="#245bf5">
+  <title>PersonaLab · 六维格点人物</title>
+  <style>
+    :root{--blue:#285cf4;--blue-dark:#1943c0;--ink:#182443;--muted:#71809b;--line:#e5eaf4;--wash:#f4f7fd;--soft:#edf3ff;--green:#18856e;--amber:#a56a15;--red:#b43b50;--shadow:0 7px 30px rgba(35,63,121,.045)}
+    *{box-sizing:border-box}body{margin:0;background:var(--wash);color:var(--ink);font-family:Inter,"PingFang SC","Microsoft YaHei",system-ui,sans-serif;font-size:14px;line-height:1.6}button,textarea,input{font:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.5}button,a,summary,textarea,input{outline-offset:4px}button:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #9ab5ff}button{transition:background .16s,box-shadow .16s,transform .16s}button:not(:disabled):active{transform:translateY(1px)}a{color:var(--blue);text-decoration:none}svg{display:block;flex-shrink:0}h1,h2,h3,p{margin:0}h2{font-size:17px;letter-spacing:-.3px}h3{font-size:14px}[hidden]{display:none!important}.muted{color:var(--muted)}.small{font-size:12px}.mono{font-family:ui-monospace,SFMono-Regular,Consolas,monospace}.nowrap{white-space:nowrap}.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+    .rail{position:fixed;inset:0 auto 0 0;width:76px;background:#fff;border-right:1px solid var(--line);display:flex;align-items:center;flex-direction:column;gap:18px;padding:25px 0;z-index:10}.logo{height:40px;width:40px;background:var(--blue);color:#fff;border-radius:13px;display:grid;place-items:center;box-shadow:0 5px 15px #285cf42b}.rail-button{border:0;background:none;color:#96a2b8;border-radius:12px;width:42px;height:42px;display:grid;place-items:center}.rail-button.active{background:var(--soft);color:var(--blue)}.rail-divider{width:26px;border-top:1px solid var(--line);margin:5px 0}.rail-bottom{margin-top:auto;color:#a6b1c4;writing-mode:vertical-rl;font-size:10px;letter-spacing:2px}.page{margin-left:76px}.topbar{height:76px;background:#ffffffd9;border-bottom:1px solid var(--line);padding:0 38px;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:baseline;gap:13px;font-size:19px;font-weight:750;letter-spacing:-.5px}.brand small{color:#8c98ad;font-size:12px;font-weight:450;letter-spacing:1px}.top-actions{display:flex;align-items:center;gap:14px}.status-pill{display:flex;align-items:center;gap:7px;padding:5px 11px;border:1px solid var(--line);border-radius:50px;color:var(--muted);font-size:12px;background:#fff}.status-dot{width:6px;height:6px;border-radius:50%;background:#a1afc5}.status-pill.ready{color:var(--green);border-color:#dbefe7;background:#f7fcf9}.status-pill.ready .status-dot{background:#22a383}.status-pill.loading .status-dot{background:#d29e32}.icon-button{border:1px solid var(--line);background:#fff;color:var(--muted);width:32px;height:32px;border-radius:9px;display:grid;place-items:center}.icon-button:hover{background:var(--soft);color:var(--blue)}main{max-width:1680px;margin:0 auto;padding:30px 38px 34px}.eyebrow{text-transform:uppercase;letter-spacing:2.4px;color:var(--blue);font-size:10px;font-weight:750;margin-bottom:10px}.hero{display:flex;align-items:center;justify-content:space-between;gap:30px;margin-bottom:26px}.hero h1{font-size:30px;letter-spacing:-1.1px;font-weight:760;line-height:1.4;margin-bottom:9px}.hero h1 span{color:var(--blue)}.hero p{color:var(--muted);font-size:13px;max-width:640px}.hero-art{display:flex;align-items:center;gap:14px;padding:14px 22px;border-radius:16px;background:linear-gradient(105deg,#edf2ff,#f8faff);border:1px solid #e6ecfd}.axis-orbit{width:69px;height:69px;position:relative;display:grid;place-items:center}.axis-orbit:before{content:"";position:absolute;inset:12px;border:1px dashed #b0c3f5;border-radius:50%}.axis-orbit b{position:absolute;font-size:11px;background:#fff;color:#4069cb;width:23px;height:23px;display:grid;place-items:center;border:1px solid #dfe7fc;border-radius:8px;box-shadow:0 2px 8px #456bb70c}.axis-orbit b:nth-child(1){top:0;left:23px}.axis-orbit b:nth-child(2){right:0;top:23px}.axis-orbit b:nth-child(3){bottom:0;left:23px}.axis-orbit b:nth-child(4){bottom:0;left:23px}.axis-orbit b:nth-child(1){top:0;left:23px}.axis-orbit b:nth-child(2){right:0;top:12px}.axis-orbit b:nth-child(3){right:0;bottom:12px;left:auto}.axis-orbit b:nth-child(5){left:0;bottom:12px}.axis-orbit b:nth-child(6){left:0;top:12px}.hero-art p{font-size:11px;max-width:160px}.hero-art strong{font-size:12px;display:block;color:#4a608e;margin-bottom:3px}
+    .metrics{display:grid;grid-template-columns:1.4fr 1.4fr 1fr 1fr;gap:14px;margin-bottom:24px}.metric{background:#fff;border:1px solid var(--line);border-radius:13px;padding:14px 17px;display:flex;align-items:center;gap:12px;min-width:0;box-shadow:var(--shadow)}.metric-icon{color:#5c7cdc;background:#f0f4ff;border-radius:10px;width:37px;height:37px;display:grid;place-items:center;flex-shrink:0}.metric-label{font-size:10px;letter-spacing:.5px;color:var(--muted);margin-bottom:1px}.metric-value{font-size:12px;font-weight:650;overflow-wrap:anywhere}.metric-value.big{font-size:17px;line-height:1.3}.metric-value small{font-size:10px;color:var(--muted);font-weight:400;margin-left:5px}.workspace{display:grid;grid-template-columns:340px minmax(0,1fr);gap:22px;align-items:start}.panel{background:#fff;border:1px solid var(--line);border-radius:17px;box-shadow:var(--shadow);overflow:hidden}.panel-head{padding:20px 22px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px}.step{width:24px;height:24px;background:var(--soft);border-radius:7px;color:var(--blue);font-size:11px;display:grid;place-items:center;font-weight:700}.title-group{display:flex;align-items:center;gap:9px}.tag{display:inline-flex;align-items:center;border-radius:5px;padding:2px 7px;background:var(--soft);color:#5574bd;font-size:10px;font-weight:600;line-height:1.6}.tag.synthetic{background:#f5f0ff;color:#8064b0}.input-body{padding:0 22px 22px}.input-description{font-size:12px;line-height:1.8;color:var(--muted);margin-bottom:16px}.upload-zone{border:1px dashed #bfd0f4;border-radius:11px;background:#fafcff;padding:17px 10px;text-align:center;position:relative;transition:background .15s}.upload-zone.dragging{background:#eaf1ff;border-color:var(--blue)}.upload-zone svg{margin:0 auto 8px;color:#7394e4}.upload-zone strong{display:block;font-size:12px;font-weight:550}.upload-zone p{font-size:10px;color:#9ca8bc;margin-top:3px}.text-button{border:0;padding:0;color:var(--blue);background:none;font-size:inherit}.editor-label{display:flex;justify-content:space-between;align-items:center;margin:16px 0 8px;font-size:11px;color:var(--muted)}.editor-label .sample-actions{display:flex;gap:10px}.json-editor{width:100%;height:260px;resize:vertical;min-height:160px;max-height:620px;border:1px solid var(--line);background:#f9fbfe;border-radius:9px;padding:12px;font-size:10.5px;line-height:1.75;color:#536480;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;tab-size:2}.json-editor:focus{outline:2px solid #bfd0ff;border-color:#a8bffb}.source-summary{margin:8px 0 15px;display:flex;gap:7px;align-items:center;font-size:11px;color:var(--muted);min-height:23px}.notice{background:#f7f9fd;border:1px solid #e9eef8;border-radius:9px;padding:11px 12px;font-size:10px;line-height:1.8;color:#78869e;margin-bottom:14px}.notice strong{color:#54637c;font-weight:600}.primary-button{background:var(--blue);color:#fff;border:1px solid var(--blue);border-radius:9px;padding:11px 15px;font-weight:600;font-size:12px;display:flex;justify-content:center;align-items:center;gap:8px;box-shadow:0 4px 10px #285cf41c}.primary-button:hover:not(:disabled){background:var(--blue-dark)}.primary-button.full{width:100%}.secondary-button{background:#fff;color:#637491;border:1px solid var(--line);padding:7px 10px;border-radius:8px;font-size:11px}.secondary-button:hover:not(:disabled){background:var(--wash)}.input-foot{margin-top:10px;color:#9aa5b7;text-align:center;font-size:10px}.error-note{border:1px solid #f2d6dc;background:#fff5f6;color:var(--red);padding:10px 12px;border-radius:8px;font-size:11px;margin-top:12px;white-space:pre-wrap;overflow-wrap:anywhere}.progress-box{background:#f5f8ff;border:1px solid #e5ecff;border-radius:9px;margin-top:13px;padding:12px}.progress-heading{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:#5074c3}.progress-track{height:5px;background:#e1e9fb;border-radius:10px;margin:9px 0}.progress-fill{height:100%;background:var(--blue);border-radius:10px;transition:width .3s;width:0}.progress-help{font-size:10px;color:#8595b6;line-height:1.8}.input-info{margin-top:16px;padding:0 5px;color:#8c99af;font-size:11px;line-height:1.9}.input-info strong{display:block;color:#63748e;font-weight:550;margin-bottom:3px}
+    .results-column{min-width:0}.results-header{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:2px 0 16px}.results-header h2{font-size:18px}.results-title{display:flex;align-items:center;gap:9px}.count-tag{background:#e9effb;color:#6981b6;border-radius:6px;font-size:11px;min-width:23px;text-align:center;padding:1px 6px}.results-header p{font-size:11px;color:var(--muted);margin-top:3px}.people-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:19px}.person-card{background:#fff;border:1px solid var(--line);border-radius:12px;text-align:left;padding:13px 12px;position:relative;min-width:0;color:var(--ink);box-shadow:var(--shadow)}.person-card:hover{border-color:#a5bdfa;box-shadow:0 4px 12px #285cf40c}.person-card.selected{border-color:#5e85fb;background:#fafcff;box-shadow:0 0 0 2px #285cf40b}.person-top{display:flex;align-items:center;gap:8px}.avatar{width:31px;height:31px;border-radius:10px;background:#edf2ff;color:#5074c8;display:grid;place-items:center;font-size:13px;font-weight:600;flex-shrink:0}.avatar.tone-1{background:#f0edfd;color:#846bb3}.avatar.tone-2{background:#e9f5f3;color:#5d9b8e}.avatar.tone-3{background:#fff3e7;color:#b58b5d}.person-name{font-size:12px;font-weight:650;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.person-node{font-size:9px;color:#91a0b9;line-height:1.6}.person-mini-axes{display:flex;gap:5px;margin:13px 0 9px;flex-wrap:wrap}.mini-axis{font-size:9px;color:#7b8ba7;background:#f2f5fb;padding:2px 4px;border-radius:4px}.mini-axis b{color:#526c9e;font-weight:650;margin-right:2px}.person-bottom{display:flex;align-items:center;justify-content:space-between;gap:4px;color:#9aa7bd;font-size:9px}.chat-pending-mark{color:var(--blue);font-size:9px}.empty-results{padding:55px 40px 42px;min-height:588px;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 23%,#f0f5ff 0%,#fff 55%)}.empty-art{width:164px;height:133px;position:relative;margin:0 auto 25px}.empty-person{position:absolute;width:70px;height:87px;border:1px solid #dce5fb;background:#fff;border-radius:12px;box-shadow:0 7px 24px #345eab0c;padding:12px 11px;transform:rotate(-11deg);left:5px;top:28px}.empty-person:last-child{transform:rotate(11deg);left:auto;right:3px;top:23px}.empty-person.center{transform:rotate(0);z-index:2;left:47px;top:3px;width:75px;height:100px;border-color:#a6bffb}.empty-head{width:23px;height:23px;background:#dce7ff;border-radius:8px;margin:0 auto 12px}.empty-person.center .empty-head{background:#5884fa}.empty-line{height:4px;border-radius:3px;background:#e8eefb;margin:6px auto}.empty-line.short{width:60%}.empty-results h3{font-size:18px;font-weight:650;margin-bottom:9px}.empty-results>p{font-size:12px;color:var(--muted);max-width:360px;line-height:1.9}.empty-flow{display:flex;align-items:center;gap:11px;margin:28px 0 22px;color:#a4b2ca;font-size:11px}.empty-flow span{padding:6px 10px;background:#f5f8ff;border:1px solid #e6edfc;color:#748cb7;border-radius:7px}.empty-note{font-size:10px;color:#a0adc4;max-width:330px;line-height:1.8}
+    .person-workspace{display:grid;grid-template-columns:272px minmax(0,1fr);min-height:510px}.profile{border-right:1px solid var(--line);padding:20px 18px;background:linear-gradient(#fcfdff,#fff)}.profile-header{display:flex;align-items:center;gap:10px;margin-bottom:19px}.profile-header .avatar{width:38px;height:38px;font-size:16px;border-radius:11px}.profile-header h3{font-size:15px}.profile-header p{font-size:10px;color:var(--muted);margin-top:1px}.subheading{color:#8897ad;font-size:10px;letter-spacing:.8px;margin:17px 0 12px;display:flex;align-items:center;justify-content:space-between}.axis-row{margin:13px 0}.axis-title{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#687a98;margin-bottom:7px}.axis-title strong{font-size:11px;color:#53698e;font-weight:500}.axis-label{display:flex;align-items:center;gap:6px}.axis-key{color:var(--blue);font-size:10px;font-weight:700;background:#eaf0ff;width:19px;height:19px;border-radius:5px;display:grid;place-items:center}.axis-level{font-size:10px;padding:0 5px;border-radius:4px;background:#edf2ff;color:#5779c6}.axis-track{height:5px;background:#edf1f9;border-radius:6px;position:relative;margin:7px 0 5px}.axis-bar{height:100%;background:#7799f5;border-radius:6px}.axis-anchor{position:absolute;width:2px;height:11px;top:-3px;background:#37435c;transform:translateX(-1px)}.axis-values{font-size:9px;display:flex;justify-content:space-between;color:#95a1b6}.legend{font-size:9px;color:#98a4b7;display:flex;gap:12px;align-items:center;margin-bottom:12px}.legend span{display:flex;align-items:center;gap:4px}.legend i{width:10px;height:4px;background:#7799f5;border-radius:3px}.legend i.anchor{width:2px;height:9px;background:#37435c}.mapping-note{background:#f5f8fe;border-radius:8px;padding:10px;font-size:10px;line-height:1.8;color:#8999b4;margin-top:17px}.mapping-note strong{font-weight:550;color:#647b9d}.evidence{border-top:1px solid var(--line);margin-top:16px;padding-top:12px}.evidence summary{cursor:pointer;font-size:11px;color:#6c7e9b;list-style:none;display:flex;align-items:center;justify-content:space-between}.evidence summary:after{content:"＋";font-size:13px;color:#9eabc1}.evidence[open] summary:after{content:"−"}.evidence-list{font-size:10px;color:#8999b4;padding-top:4px}.evidence-item{padding-top:11px;line-height:1.9;overflow-wrap:anywhere}.evidence-item strong{color:#607596;font-weight:550}.evidence-item p{white-space:pre-wrap}.evidence-confidence{color:#a1abc0;margin-top:3px}.coefficients{font-size:9px;color:#8d9bb3;line-height:1.9;overflow-wrap:anywhere}
+    .chat{min-width:0;display:flex;flex-direction:column;min-height:510px}.chat-header{padding:17px 20px;border-bottom:1px solid #edf1f7;display:flex;align-items:center;justify-content:space-between;gap:12px}.chat-header h3{font-size:12px}.chat-header p{font-size:9px;color:#9ba9bf;margin-top:2px}.native-tag{color:#6d84b0;background:#f1f5fc;border-radius:5px;font-size:9px;padding:2px 6px;display:inline-flex;align-items:center;gap:4px;margin-left:6px}.native-tag:before{content:"";width:4px;height:4px;border-radius:50%;background:#87a5de}.reset-button{border:0;color:#9aa7bc;background:none;padding:5px;font-size:10px}.reset-button:hover:not(:disabled){color:var(--blue)}.chat-messages{height:350px;min-height:260px;overflow-y:auto;padding:19px 20px;scroll-behavior:smooth;flex:1;scrollbar-width:thin;scrollbar-color:#d8e2f5 transparent}.chat-empty{height:100%;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;color:#9aa9c0;padding:35px 10px}.chat-empty svg{color:#a9bde7;margin-bottom:12px}.chat-empty strong{font-size:12px;font-weight:500;color:#7d91b4;margin-bottom:4px}.chat-empty p{font-size:10px;max-width:260px}.message{margin-bottom:17px;min-width:0}.message-author{font-size:9px;color:#9aa9c0;margin-bottom:6px;display:flex;align-items:center;gap:6px}.message-user{display:flex;flex-direction:column;align-items:flex-end}.message-user .message-bubble{background:#edf3ff;color:#4665a3;border-radius:11px 3px 11px 11px;max-width:94%;padding:10px 12px}.message-bubble{font-size:12px;line-height:1.9;white-space:pre-wrap;overflow-wrap:anywhere}.message-assistant .message-bubble{padding:0 1px;color:#4e607c}.message-meta{font-size:9px;color:#acb7c9;margin-top:7px}.thought{background:#f8faff;border:1px solid #e7edf8;border-radius:8px;margin-bottom:9px;overflow:hidden}.thought summary{cursor:pointer;color:#8b9bba;font-size:10px;padding:8px 10px;list-style:none;display:flex;align-items:center;gap:6px}.thought summary:before{content:"▸";font-size:10px}.thought[open] summary:before{content:"▾"}.thought pre{margin:0;padding:0 12px 12px;font:10px/1.9 ui-monospace,SFMono-Regular,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere;color:#8b98af}.warning-bubble{color:#9b7134!important;background:#fff9ee;border:1px solid #f0e4ca;border-radius:8px;padding:10px 12px!important;font-size:11px!important}.error-bubble{color:var(--red)!important;background:#fff6f7;border:1px solid #f1dce1;border-radius:8px;padding:10px 12px!important}.pending-message{font-size:11px;color:#879dbf;display:flex;align-items:center;gap:7px;padding:7px 0}.spinner{display:inline-block;width:11px;height:11px;border:2px solid #cbd9fb;border-top-color:#6289ee;border-radius:50%;animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}.chat-composer{padding:13px 17px 12px;border-top:1px solid #edf1f7;background:#fff}.suggestions{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:10px}.suggestion{font-size:9px;color:#8a9abb;background:#fafcff;border:1px solid #e6edf9;border-radius:5px;padding:4px 7px;text-align:left}.suggestion:hover{border-color:#b8ccf7;color:#5c7ebf}.composer-box{border:1px solid #dfe7f6;border-radius:10px;display:flex;align-items:flex-end;padding:8px;gap:8px}.composer-box:focus-within{border-color:#b2c6f7;box-shadow:0 0 0 2px #285cf406}.chat-input{border:0;outline:none!important;resize:none;height:45px;min-height:45px;max-height:120px;flex:1;min-width:0;font-size:11px;line-height:1.8;color:#566986;background:transparent;padding:3px 4px}.chat-input::placeholder{color:#b1bdd0}.send-button{width:31px;height:31px;background:var(--blue);border:0;border-radius:8px;display:grid;place-items:center;color:#fff;flex-shrink:0}.send-button:hover:not(:disabled){background:var(--blue-dark)}.composer-footer{display:flex;justify-content:space-between;gap:8px;margin-top:7px;font-size:8px;color:#a6b2c6}.footer{display:flex;align-items:center;justify-content:space-between;color:#a1aec2;font-size:10px;gap:12px;margin-top:24px}.footer span:last-child{font-family:ui-monospace,monospace;font-size:9px;letter-spacing:1px}.global-note{padding:10px 14px;margin-bottom:18px;background:#fff9ee;border:1px solid #efdfbf;color:#a28453;border-radius:9px;font-size:11px}.help-dialog{max-width:580px;width:calc(100% - 35px);border:1px solid #dbe5f7;border-radius:17px;padding:27px;color:#596b88;box-shadow:0 15px 80px #1a325b2a}.help-dialog::backdrop{background:#19345b43;backdrop-filter:blur(2px)}.help-dialog h2{color:var(--ink);margin-bottom:15px}.help-dialog p{font-size:12px;line-height:1.9;margin:10px 0}.help-dialog .primary-button{margin-top:18px;float:right}.help-dialog code{background:#f0f4fc;padding:2px 5px;font-size:11px;border-radius:4px}.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:100;background:#263c64;color:#fff;padding:10px 18px;border-radius:9px;box-shadow:0 5px 25px #21395e24;font-size:12px;max-width:calc(100vw - 40px);text-align:center}
+    .chat-mode-bar{padding:10px 17px;border-bottom:1px solid #edf1f7;display:flex;align-items:center;gap:12px;flex-wrap:wrap}.mode-switch{display:flex;gap:3px;padding:3px;background:#f0f4fb;border-radius:8px;flex-shrink:0}.mode-button{border:0;background:transparent;color:#8a9bb7;border-radius:6px;padding:6px 10px;font-size:10px}.mode-button[aria-pressed="true"]{color:var(--blue);background:#fff;box-shadow:0 2px 5px #3456820c}.mode-description{font-size:9px;color:#95a4bb;flex:1;min-width:120px}.context-preview{margin:11px 17px 0;border:1px solid #e5ecf8;border-radius:8px;background:#fbfcff}.context-preview>summary{list-style:none;cursor:pointer;padding:9px 11px;font-size:10px;color:#768cb3;display:flex;justify-content:space-between;align-items:center;gap:8px}.context-preview>summary:before{content:"▸";color:#9eafd0}.context-preview[open]>summary:before{content:"▾"}.context-summary-label{flex:1}.context-count{color:#98a8bf;font-size:9px}.context-preview-body{padding:0 11px 11px;max-height:280px;overflow:auto;scrollbar-width:thin}.context-topline{display:flex;align-items:center;justify-content:space-between;gap:8px;border-top:1px solid #edf1f8;padding-top:9px;margin-bottom:9px}.context-topline span{color:#a0adc1;font-size:9px}.context-topline button{font-size:9px;flex-shrink:0}.context-section-title{font-size:10px;color:#7389ad;font-weight:600;margin:11px 0 7px}.context-turn{margin:7px 0;padding:8px 9px;background:#fff;border:1px solid #edf1f8;border-radius:6px}.context-speaker{font-size:9px;color:#98a8c0;margin-bottom:3px}.context-text{font-size:10px;color:#7b8ba5;white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.8}.context-notice{font-size:10px;color:#96a6bf;line-height:1.8;white-space:pre-wrap;overflow-wrap:anywhere}.context-error{color:var(--red)}
+    .emotion-controls{padding:10px 17px;border-bottom:1px solid #edf1f7;background:#fbfcff}.emotion-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.emotion-options{display:flex;gap:5px;flex-wrap:wrap}.emotion-button{border:1px solid #e1e8f6;background:#fff;color:#7285a5;border-radius:6px;padding:5px 9px;font-size:10px}.emotion-button[aria-pressed="true"]{border-color:#8aa8f7;background:var(--soft);color:var(--blue);box-shadow:0 0 0 1px #285cf40b}.emotion-button[data-emotion="joy"][aria-pressed="true"]{border-color:#88c5b3;background:#eff9f5;color:var(--green)}.emotion-button[data-emotion="anger"][aria-pressed="true"]{border-color:#dba1ac;background:#fff3f5;color:var(--red)}.emotion-label{font-size:10px;font-weight:600;color:#657b9e}.emotion-note{font-size:9px;color:#8999b1;margin-top:5px;line-height:1.7}
+    @media(min-width:1650px){.workspace{grid-template-columns:360px minmax(0,1fr)}.person-workspace{grid-template-columns:310px minmax(0,1fr)}.chat-messages{height:395px}.json-editor{height:304px}}
+    @media(max-width:1230px){main{padding:25px 25px}.topbar{padding:0 25px}.workspace{grid-template-columns:300px minmax(0,1fr);gap:17px}.input-body{padding:0 17px 19px}.panel-head{padding:18px 17px 15px}.person-workspace{grid-template-columns:215px minmax(0,1fr)}.profile{padding:17px 13px}.people-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.person-mini-axes{margin:10px 0 6px}.person-card{padding:11px 13px}.hero-art{padding:12px}.metrics{gap:10px}.metric{padding:12px;gap:8px}.metric-icon{width:31px;height:31px}.chat-header{padding:15px 13px}.chat-messages{padding:16px 13px}.chat-composer{padding:12px}.hero h1{font-size:27px}}
+    @media(max-width:1010px){.rail{width:60px}.page{margin-left:60px}.hero-art{display:none}.workspace{grid-template-columns:280px minmax(0,1fr)}.person-workspace{grid-template-columns:minmax(0,1fr)}.profile{border-right:0;border-bottom:1px solid var(--line);padding:17px}.profile-header{margin-bottom:10px}.profile-axes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 17px}.profile .subheading{margin:10px 0 5px}.profile .axis-row{margin:6px 0}.mapping-note{margin-top:10px}.evidence{margin-top:10px}.chat-messages{height:310px}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.chat{min-height:420px}.empty-results{padding:35px 20px;min-height:590px}}
+    @media(max-width:760px){.rail{display:none}.page{margin-left:0}.topbar{height:65px;padding:0 20px}.brand{font-size:17px}.brand small{display:none}main{padding:24px 18px}.hero{margin-bottom:20px}.hero h1{font-size:25px;letter-spacing:-.8px}.hero p{font-size:11px;line-height:1.8}.metrics{gap:8px;margin-bottom:20px}.metric-label{font-size:9px}.metric-value{font-size:10px}.metric-value.big{font-size:15px}.workspace{grid-template-columns:minmax(0,1fr);gap:26px}.json-editor{height:200px}.input-info{display:none}.people-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.results-header{margin-bottom:13px}.empty-results{min-height:380px}.empty-flow{gap:6px}.empty-flow span{padding:5px 7px}.person-workspace{grid-template-columns:minmax(0,1fr)}.profile-axes{grid-template-columns:repeat(2,minmax(0,1fr));gap:0 22px}.chat-messages{height:360px}.footer{align-items:flex-start;font-size:9px}.footer span:last-child{display:none}.top-actions{gap:8px}.status-pill{font-size:10px}.hero h1 span{white-space:nowrap}}
+    @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+  .catalog-note{display:flex;align-items:center;gap:9px;flex-wrap:wrap;color:#8291aa;font-size:11px;margin:-5px 0 19px}.axis-match{display:flex;justify-content:space-between;gap:8px;font-size:10px;color:#8d9cb2;margin-top:5px}.axis-match strong{font-weight:600;color:#4f648a}.axis-mismatch{color:#a3702a!important}.axis-row{margin:16px 0}.profile{padding-top:20px}.axis-track{height:6px}.axis-bar{opacity:.8}.mapping-note{white-space:pre-line}.thought summary{color:#677f9e}.people-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.person-workspace{grid-template-columns:285px minmax(0,1fr)}@media(max-width:1150px){.people-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.person-workspace{grid-template-columns:245px minmax(0,1fr)}}@media(max-width:900px){.person-workspace{grid-template-columns:1fr}.profile{border-right:0;border-bottom:1px solid var(--line)}.profile-axes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 20px}}@media(max-width:460px){.profile-axes{grid-template-columns:1fr}.hero-art{display:none}}
+  </style>
+</head>
+<body>
+  <aside class="rail" aria-label="主导航">
+    <div class="logo" aria-label="PersonaLab"><svg width="25" height="25" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 18V6h7a4 4 0 0 1 0 8H9" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/><circle cx="17" cy="18" r="2" fill="currentColor"/></svg></div>
+    <div class="rail-divider"></div>
+    <button class="rail-button active" id="workspace-nav" aria-label="人物工作台" title="人物工作台"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="2" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="3" width="7" height="7" rx="2" stroke="currentColor" stroke-width="1.6"/><rect x="3" y="14" width="7" height="7" rx="2" stroke="currentColor" stroke-width="1.6"/><rect x="14" y="14" width="7" height="7" rx="2" stroke="currentColor" stroke-width="1.6"/></svg></button>
+    <button class="rail-button" id="help-nav" aria-label="使用说明" title="使用说明"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M9.6 9a2.5 2.5 0 1 1 4.1 2c-1.4.8-1.7 1.3-1.7 2.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="17" r=".8" fill="currentColor"/></svg></button>
+    <div class="rail-bottom">PERSONALITY · IN CONTEXT</div>
+  </aside>
+  <div class="page">
+    <header class="topbar">
+      <div class="brand">PersonaLab <small>人物交互实验室</small></div>
+      <div class="top-actions"><div class="status-pill" id="service-status"><span class="status-dot"></span><span id="service-status-text">正在连接服务</span></div><button class="icon-button" id="refresh-status" aria-label="刷新服务状态" title="刷新服务状态"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 10a8 8 0 1 0-2 8M20 4v6h-6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div>
+    </header>
+    <main id="workspace">
+      <section class="hero">
+        <div><div class="eyebrow">Dialogue to personality</div><h1>从一段对话，<span>认识不同的 TA。</span></h1><p>手动指定六维档位，或启用 DeepSeek 理解对话中的倾向；匹配灰灰第一人称模型的实测格点，看看不同的人会怎么想、怎么回答。</p></div>
+        <div class="hero-art" aria-hidden="true"><div class="axis-orbit"><b>A</b><b>C</b><b>N</b><b>R</b><b>M</b><b>T</b></div><div><strong>六个维度，每个人单独理解</strong><p>对话证据 → 倾向标签 → 合格网格 → 多轮交互</p></div></div>
+      </section>
+      <section class="metrics" aria-label="模型与服务信息">
+        <div class="metric"><div class="metric-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5 9-5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="m3 12 9 5 9-5M3 16l9 5 9-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div><div><div class="metric-label">对话模型</div><div class="metric-value" id="model-name">等待服务信息</div></div></div>
+        <div class="metric"><div class="metric-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 4v16M12 4v16M19 4v16" stroke="currentColor" stroke-width="1.4"/><rect x="2" y="7" width="6" height="4" rx="1.5" fill="#f0f4ff" stroke="currentColor" stroke-width="1.4"/><rect x="9" y="13" width="6" height="4" rx="1.5" fill="#f0f4ff" stroke="currentColor" stroke-width="1.4"/><rect x="16" y="6" width="6" height="4" rx="1.5" fill="#f0f4ff" stroke="currentColor" stroke-width="1.4"/></svg></div><div><div class="metric-label">人格适配器</div><div class="metric-value" id="adapter-name">等待服务信息</div></div></div>
+        <div class="metric"><div class="metric-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5" stroke="currentColor" stroke-width="1.5"/></svg></div><div><div class="metric-label">已筛选格点</div><div class="metric-value big"><span id="catalog-size">—</span><small>个节点</small></div></div></div>
+        <div class="metric"><div class="metric-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m13 2-8 12h6l-1 8 9-13h-7l1-7Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg></div><div><div class="metric-label">就绪推理实例</div><div class="metric-value big"><span id="workers-ready">—</span><small id="workers-total">/ —</small></div></div></div>
+      </section>
+      <div class="global-note" id="global-notice" role="status" hidden></div><div class="catalog-note"><span class="tag">98% 格式门控</span><span class="tag">“用户”词汇命中 ≤10%</span><span>格点优先，未达目标高低档位时语义补充；目标不是实测分数。</span></div>
+      <div class="workspace">
+        <div>
+          <section class="panel" aria-labelledby="import-title">
+            <div class="panel-head"><div class="title-group"><span class="step">01</span><h2 id="import-title">导入对话</h2></div><span class="tag">JSON</span></div>
+            <div class="input-body">
+              <p class="input-description">放入多个人的真实对话，或先试试合成示例。每个人会获得独立的倾向与匹配结果。</p>
+              <div class="upload-zone" id="upload-zone"><svg width="25" height="25" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8 16H6a4 4 0 0 1-.6-7.9A6.5 6.5 0 0 1 18 7a4.5 4.5 0 0 1 0 9h-2M12 20V10m-3 3 3-3 3 3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg><strong>拖入文件，或 <button class="text-button" id="choose-file">选择 JSON 文件</button></strong><p>只读取到输入框 · 点击提取后才会发送</p><input type="file" id="file-input" accept=".json,application/json" hidden></div>
+              <div class="editor-label"><label for="json-input">对话内容</label><div class="sample-actions"><button class="text-button" id="load-sample">载入示例</button><button class="text-button" id="manual-sample">手动中档示例</button><button class="text-button" id="download-sample">下载格式</button></div></div>
+              <textarea class="json-editor" id="json-input" spellcheck="false" aria-describedby="source-summary privacy-notice" placeholder='{"people":[{"id":"person_1","name":"姓名","dialogue":[{"role":"customer","text":"对话内容"}]}]}'></textarea>
+              <div class="source-summary" id="source-summary"><span class="tag synthetic" id="synthetic-tag">合成演示素材</span><span id="input-summary">正在载入示例</span></div>
+              <div class="notice" id="privacy-notice"><strong>数据发送说明</strong><br>每位人物提供完整 levels 时不调用外部模型；否则需在 JSON 顶层设置 allow_external_extraction=true，并将完整对话发送至配置的 DeepSeek API。请先移除个人敏感信息。</div>
+              <button class="primary-button full" id="extract-button"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m12 3 2.6 6.4L21 12l-6.4 2.6L12 21l-2.6-6.4L3 12l6.4-2.6L12 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg><span id="extract-button-text">提取 6 轴并创建人物</span></button>
+              
+              <div class="progress-box" id="extract-progress" role="status" aria-live="polite" hidden><div class="progress-heading"><span id="progress-label">六轴并行提取中</span><span id="progress-count">0 / 6</span></div><div class="progress-track" role="progressbar" id="extract-progressbar" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0" aria-label="六轴提取进度"><div class="progress-fill" id="progress-fill"></div></div><p class="progress-help" id="progress-help">A 宜人性 · C 尽责性 · N 情绪敏感 · R 风险承担 · M 物质价值 · T 未来后果</p></div>
+              <div class="error-note" id="extract-error" role="alert" hidden></div>
+            </div>
+          </section>
+          <div class="input-info"><strong>从对话中观察，不给人下定义。</strong>标签仅描述当前素材中的行为倾向，不是心理测评或诊断。素材不足、情境变化，都可能影响判断。</div>
+        </div>
+        <section class="results-column" aria-labelledby="results-title">
+          <div class="results-header"><div><div class="results-title"><span class="step">02</span><h2 id="results-title">人物工作台</h2><span class="count-tag" id="people-count">0</span></div><p id="results-subtitle">完成提取后，选择一个人物开始对话</p></div><span class="tag" id="extraction-timing" hidden></span></div>
+          <div class="people-grid" id="people-grid" aria-label="选择人物" hidden></div>
+          <div class="panel empty-results" id="empty-results"><div class="empty-art" aria-hidden="true"><div class="empty-person"><div class="empty-head"></div><div class="empty-line"></div><div class="empty-line short"></div></div><div class="empty-person center"><div class="empty-head"></div><div class="empty-line"></div><div class="empty-line short"></div><div class="empty-line"></div></div><div class="empty-person"><div class="empty-head"></div><div class="empty-line"></div><div class="empty-line short"></div></div></div><h3>让对话中的人物，开始与你对话</h3><p>左侧已备好八位合成示例人物。点击提取后，这里将展示真实 API 返回的逐人结果。</p><div class="empty-flow" aria-hidden="true"><span>读取对话</span>→<span>提取六轴</span>→<span>匹配人物</span></div><div class="empty-note">此处没有预置人格结论或模拟回复。所有提取与对话结果均来自实际模型请求。</div></div>
+          <section class="panel person-workspace" id="person-workspace" aria-label="人物详情与对话" hidden>
+            <aside class="profile"><div class="profile-header"><div class="avatar" id="profile-avatar"></div><div><h3 id="profile-name"></h3><p id="profile-node"></p></div></div><div class="subheading"><span>对话推断 → 人物档位</span><span class="tag">ACNRMT</span></div><div class="legend"><span><i></i>推断目标档位</span></div><div class="profile-axes" id="profile-axes"></div><div class="mapping-note" id="mapping-note"></div><details class="evidence"><summary>提取依据与置信描述</summary><div class="evidence-list" id="evidence-list"></div></details></aside>
+            <div class="chat">
+              <div class="chat-header"><div><h3><span id="chat-title">与人物对话</span><span class="native-tag">原生思考</span></h3><p id="chat-subtitle">独立上下文 · 可连续追问</p></div><button class="reset-button" id="reset-chat" title="清空当前人物当前模式的会话记录">重新开始</button></div>
+              <div class="chat-mode-bar"><div class="mode-switch" role="group" aria-label="对话上下文模式"><button type="button" class="mode-button" id="mode-shared" data-mode="shared" aria-pressed="true">统一前置对话 · 继续对话</button><button type="button" class="mode-button" id="mode-none" data-mode="none" aria-pressed="false">无上下文对话</button></div><p class="mode-description" id="mode-description">相同预设对话，各人物后续历史独立</p></div>
+              <div class="emotion-controls"><div class="emotion-row"><div class="emotion-options" role="group" aria-label="当前人物的情绪控制" aria-describedby="emotion-note"><button type="button" class="emotion-button" data-emotion="joy" aria-pressed="false">增加开心</button><button type="button" class="emotion-button" data-emotion="anger" aria-pressed="false">增加愤怒</button><button type="button" class="emotion-button" data-emotion="none" aria-pressed="true">关闭情绪</button></div><span class="emotion-label" id="emotion-current" role="status" aria-live="polite">当前：关闭情绪</span></div><p class="emotion-note" id="emotion-note">从下一条回复生效；保持至关闭；仅实验控制，未重新标定人格分数</p></div>
+              <details class="context-preview" id="context-preview" open><summary><span class="context-summary-label">本次携带的前置上下文</span><span class="context-count" id="context-count">等待读取</span></summary><div class="context-preview-body"><div class="context-topline"><span>统一前置对话 · 预设而非模型生成</span><button type="button" class="text-button" id="refresh-context">刷新</button></div><div id="context-content" aria-live="polite"></div></div></details>
+              <div class="chat-messages" id="chat-messages" role="log" aria-live="polite" aria-label="当前人物聊天记录"></div><form class="chat-composer" id="chat-form"><div class="suggestions" id="suggestions"><button type="button" class="suggestion">买了不吃亏，买了不上当，今天这个价很划算。</button><button type="button" class="suggestion">这个优惠只到今天，现在不下单，明天就恢复原价了。</button><button type="button" class="suggestion">大家都选这款，档次高又有面子，你也值得买个好的。</button><button type="button" class="suggestion">这款升级版功能更多，现在一步到位，后面就不用再换了。</button><button type="button" class="suggestion">你这都不买，是不是没钱</button><button type="button" class="suggestion">对不起，我错了</button><button type="button" class="suggestion">你傻逼吧，不买就别问</button></div><div class="composer-box"><textarea class="chat-input" id="chat-input" rows="2" placeholder="问问 TA 的想法，或延续上一轮对话…" aria-label="发送给当前人物的消息" maxlength="8000"></textarea><button type="submit" class="send-button" id="send-button" aria-label="发送消息"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12 7-7 7 7M12 5v15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button></div><div class="composer-footer"><span id="chat-status">每次只向当前人物发送</span><span>Enter 发送 · Shift + Enter 换行</span></div></form>
+            </div>
+          </section>
+        </section>
+      </div>
+      <footer class="footer"><span>ACNRMT：A 宜人性 · C 尽责性 · N 情绪敏感 · R 风险承担 · M 物质价值 · T 未来后果</span><span>PERSONALAB / LIVE WORKSPACE</span></footer>
+    </main>
+  </div>
+  <dialog class="help-dialog" id="help-dialog"><h2>从对话到人物，如何使用</h2><p>导入 <code>people</code> 数组，每个人包含 <code>id</code>、<code>name</code> 与 <code>dialogue</code>。每条对话包含 <code>role</code>（customer 或 staff）和 <code>text</code>。示例明确标记为合成内容，不代表真实用户。</p><p>每位人物可提供 levels：A/C/N/R/M/T 各为 low/medium/high，此时直接匹配。未提供档位时，需要显式 allow_external_extraction=true 并配置 DeepSeek；完整对话按六轴并行判读。页面不使用关键词补评分，也不预填模型结论。</p><p>蓝条用20/50/80示意低、中、高推断目标，不是实测分数。页面不展示原格点量表分，后台仍按原始测量匹配；语义补充后的配置未复测。</p><p>候选仅来自六轴均通过98%格式门控、且每节点768条输出中“用户”字样不超过10%的格点。词汇规则并不能保证每一条都是当事人思考。格点未达到目标高低档位时，会补充对应语义说明；不会把目标档位改写成实测分数。</p><p>“统一前置对话 · 继续对话”让所有人物先接收相同的销售介绍，再预设回应“我再考虑一下”。这段前置对话是统一设置，不是本轮模型生成。原始人物对话只用于提取倾向，不带入聊天；各人物后续历史独立，可以连续追问。“无上下文对话”每次只发送当前问题，不携带前置对话或任何历史。同一页面中，两种模式保留各自记录与草稿；重新开始只清空当前模式。重新打开或刷新页面会回到空白工作台，不恢复历史人物。运行记录保存在本机 FPSRG_HOME 下，不随代码发布；不同浏览器会话互相隔离。</p><p>前置上下文显示统一预设对话与本人物历史，历史只含最终回复，不含思考。本发布版等待后端完整返回后显示思考与回答；等待期间查询同一任务，不自动重发。思考也是模型生成的文本，不是已验证的心理事实。若生成未完成，会明确提示，保留片段供查看，但不补写答案、不加入后续上下文。每轮都可点击推销话术填入输入框，再自行发送。</p><button class="primary-button" id="close-help">明白了</button></dialog>
+  <div class="toast" id="toast" role="status" hidden></div>
+  <script id="sample-data" type="application/json">
+{"synthetic":true,"source":"人工编写的中文虚构对话，仅用于体验六维提取与格点匹配；不是真实客户或预先测得的人格。","people":[{"id":"demo_lin","name":"林晓","dialogue":[{"role":"customer","text":"你好，想给家里换一台洗衣机。我把阳台尺寸、排水口位置和每周洗衣量都记下来了，想买一台能踏实用很多年的。"},{"role":"staff","text":"新款外观更漂亮，有联名标志；旧款的维修网点更多，价格也低一些。"},{"role":"customer","text":"辛苦你帮我对比。我不太在意别人看出是什么牌子，主要是耐用、耗水和后面好不好修。能把两款的保修范围写清楚吗？"},{"role":"staff","text":"旧款需要等五天，新款今天可以送，但长期故障数据还没有。"},{"role":"customer","text":"五天没关系，我留了备用办法，不急着今天下单。每天要用的东西，我还是选有记录的旧款，把未来几年的维修和用电也算进去。"},{"role":"staff","text":"配送当天可能不能完全按您选的时间到，师傅会提前联系。"},{"role":"customer","text":"理解，大家跑配送也辛苦。我会把两个可用时段留好，你们有变化提前告诉我就行。尺寸确认合适以后再付款，不用着急。"}]},{"id":"demo_luo","name":"罗骁","dialogue":[{"role":"customer","text":"我想换块表，周五聚会就要戴。普通款不用介绍，我要一眼看得出档次、戴出去有存在感的。"},{"role":"staff","text":"限量款比较醒目，不过新机芯还没有长期使用记录，售后配件也要等。"},{"role":"customer","text":"我就是冲这个限量来的，戴几年的事以后再说。你先把现货和到手价讲清楚，别拿一堆宣传词糊弄我。"},{"role":"staff","text":"按流程需要先填预约表，最后到货时间可能还会调整。"},{"role":"customer","text":"表我懒得现在填。刚才不是说有现货吗？别一问就换说法，不能周五拿到我就找别家，没空陪你绕。"},{"role":"staff","text":"如果来不及，我们可以推荐普通款，功能几乎一样，价格更低。"},{"role":"customer","text":"功能一样我知道，但别人戴普通款，我不想也一样。价钱不是我现在最纠结的事。能办就给个准信，不能办直接说，我也不会为这事一直烦。"}]},{"id":"demo_chen","name":"陈舟","dialogue":[{"role":"customer","text":"周末突然想去露营，你们那个新路线还有位置吗？我没做攻略，看着挺好玩就想试试。"},{"role":"staff","text":"有位置，但新路线可能临时调整，返程也比成熟路线晚。装备有普通租赁和高端品牌两档。"},{"role":"customer","text":"普通的够用就行，牌子我不在意。只要领队确认安全，我愿意试新路线，少去一个景点也没什么，出门就是换换心情。"},{"role":"staff","text":"需要提前填装备尺码和到达时间，最好也考虑下个月的开销。"},{"role":"customer","text":"尺码我晚点再看，平时安排我也常临时改。下个月先不想那么细，这次在手头预算里就行。我更想现在出去玩一趟。"},{"role":"staff","text":"如果临时赶不上集合，改期可能需要支付费用。"},{"role":"customer","text":"好，我知道了。真赶不上就按规则来，不怪你们，换个安排也行。谢谢提醒，先发集合地点给我吧。"}]},{"id":"demo_xu","name":"许宁","dialogue":[{"role":"customer","text":"想给爸妈订两晚酒店。我列了电梯、禁烟房、步行距离这些要求，但还是担心到店后和介绍不一样，昨晚反复查了很多评价。"},{"role":"staff","text":"我们可以备注需求，但具体房号需要入住当天安排。高端品牌酒店也有同类房间。"},{"role":"customer","text":"谢谢你耐心解释。我不需要大牌或者好看的大堂，爸妈住得舒服最重要。只是“当天安排”让我很不安，哪些能保证，能逐项确认吗？"},{"role":"staff","text":"电梯和禁烟楼层可以确认，靠近电梯的房间不能保证。不可取消的套餐便宜两百元。"},{"role":"customer","text":"那我还是选可取消的。万一家里临时有事怎么办，我总会先想到这些。省这两百不如留个余地，取消期限也请发文字版，我会设提醒。"},{"role":"staff","text":"入住前三天晚上六点前可以免费取消。您不用现在决定所有安排。"},{"role":"customer","text":"麻烦了，我还是想早点把后面的交通和复诊时间一起核对好，不然一直悬着。不是为难你，只要还有一点没确定，我就容易睡不好。"}]},{"id":"demo_zhou","name":"周兰","dialogue":[{"role":"customer","text":"我要给新开的咖啡摊买磨豆机，日销量、峰值出杯量和插座功率都列好了。请按这些条件给我两个能落地的方案。"},{"role":"staff","text":"成熟款维修记录完整，新款有自动校准功能，不过长期表现还不确定；高端品牌在店里看着更有档次。"},{"role":"customer","text":"档次对我没用，能把咖啡做稳才有用。新款我可以试，但要按七天计划记录出杯误差、清洁时间和故障。我愿意承担试用成本，不等于接受空话。"},{"role":"staff","text":"供应商说大家反馈都很好，暂时拿不出故障统计。"},{"role":"customer","text":"“大家都说好”不是数据。没有就写没有，别替它保证。试用达不到约定指标我会退，你现在把条款确认清楚。"},{"role":"staff","text":"试用机可能晚到两天，开业怎么办？"},{"role":"customer","text":"备用机我已经租好了，两天延迟能处理，不用替我着急。我更关心一年后的维修和扩店能不能复用，今天把真实交期给我，我更新计划。"}]},{"id":"demo_jiang","name":"江宁","dialogue":[{"role":"customer","text":"想给朋友们订个周末聚餐的位置。我没做太多安排，大家舒服、能坐着聊会儿就好，不一定要最热门的店。"},{"role":"staff","text":"景观包间比较有面子，但人均更高；普通大厅安静一些，不过朋友可能觉得不够特别。"},{"role":"customer","text":"没关系呀，朋友见面又不是比谁花得多。大厅安静就选大厅，大家有不同想法也可以一起商量，我不想为了座位让人不高兴。"},{"role":"staff","text":"有一套新菜可以尝鲜，但口味评价不多。需要今天就确定所有人的菜吗？"},{"role":"customer","text":"我还是选熟悉的菜，别让大家踩雷。人数我晚点问，菜单也不用安排得太死，到了再根据大家胃口加。"},{"role":"staff","text":"原先的时间可能需要延后半小时，后面周末的聚会要一起预订吗？"},{"role":"customer","text":"半小时好说，我跟大家解释一下。以后那几次先不用定那么远，眼前这顿吃得开心就挺好，不顺利也能换个办法。"}]},{"id":"demo_meng","name":"孟璐","dialogue":[{"role":"customer","text":"想买个上班能背的包。我已经列了三个品牌和预算，同事最近都换了不错的包，我也希望自己的东西看起来配得上现在的职位。"},{"role":"staff","text":"这款标志比较明显，但更低调的一款材质和容量几乎一样，价格低很多。"},{"role":"customer","text":"我知道功能差不多，可别人一眼能认出来，对我确实挺重要。不是随便能装东西就行，我会觉得这些东西也代表我有没有把日子过好。"},{"role":"staff","text":"限量颜色可以预订，不过要先付定金，实物效果可能和照片有差别。"},{"role":"customer","text":"那我有点担心，买回来不好看会一直后悔。还是先看有现货的，我想把退换条件、尺寸和票据一条条确认，别急着让我付定金。"},{"role":"staff","text":"今天没有活动，下个月可能会有优惠，但也可能缺货。"},{"role":"customer","text":"你说得有道理，我会比较一下。我挺在意拿出去的感觉，也不想因为着急买贵了心里难受。谢谢，先把两种情况都写给我，我今天按清单再算一遍。"}]},{"id":"demo_tang","name":"唐悦","dialogue":[{"role":"customer","text":"我在比较家里的年度宽带，想先算清三年的总费用、搬家转移和到期涨价。今天优惠多少不是唯一要看的。"},{"role":"staff","text":"高端套餐附送一台外观漂亮的路由器，品牌也更响；基础套餐满足您现在的使用量。"},{"role":"customer","text":"品牌和外观不用加钱，设备够用就好。我宁可把钱和精力留给家里真正重要的事情，不想为了看起来高级添一件东西。"},{"role":"staff","text":"新套餐第一年便宜，但是第二年资费还没公布。现在签约能马上享受优惠。"},{"role":"customer","text":"那我先不签。后面两年的支出不清楚，眼前省一点可能不划算。麻烦给我能确认长期资费的方案，我按三年的计划比较。"},{"role":"staff","text":"查条款要多等一会儿，今天可能来不及办完。"},{"role":"customer","text":"没事，我现有合约还有时间，不会因为晚一天就乱了安排。你按实际情况查，查不到也直说，我们确认好再办。"}]}]}
+  </script>
+  <script>
+    'use strict';
+    const $ = id => document.getElementById(id);
+    const AXES = [{key:'A',label:'宜人性'},{key:'C',label:'尽责性'},{key:'N',label:'情绪敏感'},{key:'R',label:'风险承担'},{key:'M',label:'物质价值取向'},{key:'T',label:'重视未来后果'}];
+    const LEVELS = {low:'低',medium:'中',high:'高'};
+    const LEVEL_WIDTHS = {low:20,medium:50,high:80};
+    const SAMPLE = JSON.parse($('sample-data').textContent);
+    const state = {people:[],selected:null,chats:new Map(),extracting:false,restoring:false,status:null,statusPending:false};
+    const API_PREFIX=location.pathname==='/personlab'||location.pathname.startsWith('/personlab/')?'/personlab':'';
+    const el = (tag, cls, value) => { const node=document.createElement(tag); if(cls) node.className=cls; if(value!==undefined&&value!==null) node.textContent=String(value); return node; };
+    const readable = value => typeof value==='string' ? value : value==null ? '未提供' : JSON.stringify(value);
+    const number = (value,digits=1) => typeof value==='number'&&Number.isFinite(value) ? value.toFixed(digits) : '—';
+    const wait = ms => new Promise(resolve=>setTimeout(resolve,ms));
+    const anyChatBusy = () => Array.from(state.chats.values()).some(chat=>chat.pending||chat.resetting);
+    const modeName = mode => mode==='none'?'无上下文对话':'统一前置对话 · 继续对话';
+    const currentThread = (chat,mode=chat?.mode) => chat?.threads[mode];
+    const normalizedMode = mode => mode==='none'?'none':'shared';
+    const normalizedEmotion = emotion => ['joy','anger'].includes(emotion)?emotion:'none';
+    const emotionName = emotion => ({joy:'增加开心',anger:'增加愤怒',none:'关闭情绪'})[normalizedEmotion(emotion)];
+    function savedMode(id){return 'shared';}
+    function rememberMode(id,mode){}
+    function historyMessages(history){return Array.isArray(history)?history.filter(message=>message&&['user','assistant'].includes(message.role)).map(message=>({role:message.role,answer:typeof message.content==='string'?message.content:'',reasoning:typeof message.reasoning==='string'?message.reasoning:'',complete:true})):[];}
+    function validExtractionId(value){return typeof value==='string'&&/^extract_[a-z0-9_-]{1,72}$/.test(value);}
+    function rememberExtraction(id){
+      if(!validExtractionId(id))return;
+      state.currentExtraction=id;
+    }
+    let toastTimer;
+    function toast(message){$('toast').textContent=message;$('toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').hidden=true,4000);}
+    async function api(path,options={}){
+      const target=API_PREFIX&&typeof path==='string'&&path.startsWith('/api/')?API_PREFIX+path:path;
+      const response=await fetch(target,{...options,headers:{'Content-Type':'application/json',...(options.headers||{})}});
+      if(response.status===204)return {};
+      let payload;try{payload=await response.json();}catch{const error=new Error('服务返回了无法读取的响应（HTTP '+response.status+'）。');error.httpStatus=response.status;throw error;}
+      if(!response.ok){const error=new Error(readable(payload.error||payload.detail||('请求失败（HTTP '+response.status+'）')));error.httpStatus=response.status;throw error;}
+      return payload;
+    }
+    function statusPath(path){
+      if(typeof path!=='string'||!path)throw new Error('服务未返回可查询的任务地址。请求可能已经提交，请勿盲目重复发送。');
+      const url=new URL(path,location.href);
+      if(url.origin!==location.origin||!url.pathname.startsWith('/api/'))throw new Error('服务返回的任务地址无效。');
+      return url.pathname+url.search;
+    }
+    async function pollTask(path,onUpdate,onConnection){
+      const target=statusPath(path);let errors=0;
+      for(;;){
+        let task;
+        try{task=await api(target);errors=0;onConnection?.(false);}catch(error){if(error.httpStatus>=400&&error.httpStatus<500&&error.httpStatus!==429)throw error;errors++;onConnection?.(true,error);await wait(Math.min(1000+errors*1500,10000));continue;}
+        onUpdate?.(task);
+        if(task.state==='complete')return task.result;
+        if(task.state==='error')throw new Error(readable(task.error||'任务失败，服务未提供详细原因。'));
+        if(task.state!=='running'&&task.state!=='queued')throw new Error('未知任务状态：'+readable(task.state));
+        await wait(1100);
+      }
+    }
+    async function refreshStatus(){
+      if(state.statusPending)return;state.statusPending=true;$('refresh-status').disabled=true;
+      try{
+        const data=await api('/api/status');state.status=data;
+        $('model-name').textContent=readable(data.model);$('adapter-name').textContent=readable(data.adapter);
+        $('catalog-size').textContent=Number.isFinite(data.catalog_size)?String(data.catalog_size):'—';
+        $('workers-ready').textContent=Number.isFinite(data.workers_ready)?String(data.workers_ready):'—';
+        $('workers-total').textContent='/ '+(Number.isFinite(data.workers_total)?data.workers_total:'—');
+        const ready=Number(data.workers_ready)>0&&!data.loading;
+        $('service-status').className='status-pill '+(ready?'ready':'loading');
+        $('service-status-text').textContent=ready?'推理服务已就绪':data.loading?'模型加载中':'等待推理实例';
+        $('global-notice').hidden=ready;
+        $('global-notice').textContent=data.loading?'模型正在加载。可以先准备对话，人物聊天会在推理实例就绪后开放。':'当前没有就绪的推理实例。可以准备或提取人物，聊天需等待模型服务。';
+        $('service-status').title='提取：'+readable(data.extractor)+' · 推理：'+readable(data.engine);
+      }catch(error){
+        state.status=null;$('service-status').className='status-pill';$('service-status-text').textContent='服务暂未连接';
+        $('global-notice').hidden=false;$('global-notice').textContent='暂时无法读取服务状态：'+error.message+' 页面会自动重连，不会自动发起提取或聊天。';
+      }finally{state.statusPending=false;$('refresh-status').disabled=false;updateControls();}
+    }
+    function parseInput(){
+      let data;try{data=JSON.parse($('json-input').value);}catch{throw new Error('JSON 格式有误，请检查括号、引号和逗号。');}
+      if(!data||!Array.isArray(data.people)||data.people.length===0)throw new Error('请提供非空的 people 数组。可点击“载入示例”查看格式。');
+      const ids=new Set();
+      for(const person of data.people){
+        if(!person||typeof person.id!=='string'||!person.id.trim()||typeof person.name!=='string'||!person.name.trim())throw new Error('每个人都需要非空的字符串 id 与 name。');
+        if(ids.has(person.id))throw new Error('人物 id 重复：'+person.id);ids.add(person.id);
+        if(!Array.isArray(person.dialogue)||!person.dialogue.length)throw new Error(person.name+' 的 dialogue 不能为空。');
+        for(const turn of person.dialogue)if(!turn||!['customer','staff'].includes(turn.role)||typeof turn.text!=='string'||!turn.text.trim())throw new Error(person.name+' 的每条对话都需要 role（customer / staff）与非空 text。');
+        if(!person.dialogue.some(turn=>turn.role==='customer'))throw new Error(person.name+' 至少需要一条 customer 对话。');
+      }
+      return data;
+    }
+    function updateInputSummary(){
+      try{const data=parseInput();$('synthetic-tag').hidden=data.synthetic!==true;$('input-summary').textContent=data.people.length+' 位人物 · '+data.people.reduce((sum,p)=>sum+p.dialogue.length,0)+' 条对话';}
+      catch{$('synthetic-tag').hidden=true;$('input-summary').textContent=$('json-input').value.trim()?'等待有效 JSON':'尚未输入对话';}
+    }
+    function loadSample(){if(state.extracting)return;$('json-input').value=JSON.stringify(SAMPLE,null,2);updateInputSummary();$('extract-error').hidden=true;}
+    function loadManualSample(){if(state.extracting)return;const data=JSON.parse(JSON.stringify(SAMPLE));data.people=data.people.slice(0,2);for(const person of data.people){person.levels=Object.fromEntries(AXES.map(axis=>[axis.key,'medium']));person.name+='（手动中档）';}$('json-input').value=JSON.stringify(data,null,2);updateInputSummary();$('extract-error').hidden=true;}
+    async function readFile(file){
+      if(!file||state.extracting)return;
+      if(file.size>5*1024*1024){toast('文件超过 5 MB，请拆分为更小的 JSON 文件。');return;}
+      try{$('json-input').value=await file.text();updateInputSummary();$('extract-error').hidden=true;toast('文件已载入输入框，尚未发送。');}catch(error){toast('文件读取失败：'+error.message);}
+    }
+    function updateControls(){
+      const selected=state.chats.get(state.selected),busy=selected?.pending||selected?.resetting;
+      $('extract-button').disabled=state.extracting||anyChatBusy();$('json-input').disabled=state.extracting;$('choose-file').disabled=state.extracting;$('load-sample').disabled=state.extracting;$('manual-sample').disabled=state.extracting;
+      $('extract-button-text').textContent=state.restoring?'正在恢复已有任务…':state.extracting?'六轴并行提取中…':anyChatBusy()?'等待进行中的人物对话':'提取 6 轴并创建人物';
+      const canChat=state.selected&&Number(state.status?.workers_ready)>0&&!state.status?.loading&&!state.extracting;
+      $('send-button').disabled=!canChat||busy||!$('chat-input').value.trim();$('chat-input').disabled=!state.selected||!!busy||state.extracting;
+      $('reset-chat').disabled=!state.selected||!!busy||state.extracting;
+      for(const mode of ['shared','none']){$('mode-'+mode).disabled=!selected||!!busy||state.extracting;$('mode-'+mode).setAttribute('aria-pressed',String(selected?.mode===mode));}
+      document.querySelectorAll('.emotion-button').forEach(button=>{button.disabled=!selected||!!busy||state.extracting;button.setAttribute('aria-pressed',String(button.dataset.emotion===normalizedEmotion(selected?.emotion)));});
+      $('emotion-current').textContent='当前：'+emotionName(selected?.emotion)+(selected?.pending?' · 生成中，切换已锁定':'');
+      document.querySelectorAll('.suggestion').forEach(button=>{button.disabled=!canChat||!!busy;});
+      $('refresh-context').disabled=!selected||!!busy||state.extracting||!!selected?.contextLoading?.[selected.mode];
+      $('mode-description').textContent=selected?.mode==='none'?'每次只发当前问题，记录仅供查看':'相同预设对话，各人物后续历史独立';
+      $('chat-subtitle').textContent=selected?.mode==='none'?'独立提问 · 不携带材料与历史':'统一前置对话 · 独立历史 · 可连续追问';
+      $('chat-input').placeholder=selected?.mode==='none'?'输入独立问题，本次不会携带之前的材料或对话…':'问问 TA 的想法，或延续上一轮对话…';
+      $('reset-chat').title='清空当前人物的“'+modeName(selected?.mode)+'”记录';
+      $('chat-status').textContent=busy?(selected?.resetting?'正在清空当前模式记录':selected?.reconnecting?'连接中断，正在恢复进度查询':'当前人物正在生成 · 模式切换已锁定'):state.extracting?'正在提取新人物':!canChat?'等待推理服务就绪':selected?.mode==='none'?'独立提问 · 本页记录不会带入下一次请求':'每次只向当前人物发送';
+    }
+    function showExtractError(message){$('extract-error').textContent=message;$('extract-error').hidden=false;}
+    function installExtraction(result){
+      if(!result||!Array.isArray(result.individuals)||!result.individuals.length)throw new Error('提取任务没有返回人物结果。');
+      const ids=new Set();
+      for(const person of result.individuals){if(!person||!person.id||ids.has(String(person.id))||!person.matched||AXES.some(axis=>!LEVELS[person.levels?.[axis.key]]))throw new Error('提取结果结构不完整，未创建不可靠的人物卡片。');ids.add(String(person.id));}
+      state.people=result.individuals.map(person=>({...person,id:String(person.id)}));state.chats=new Map();state.selected=null;
+      for(const person of state.people){
+        state.chats.set(person.id,{mode:savedMode(person.id),emotion:'none',threads:{shared:{messages:historyMessages(person.shared_history),draft:''},none:{messages:historyMessages(person.standalone_history),draft:''}},pending:!!person.pending,pendingMode:null,resetting:false,reconnecting:false,progress:null,progressThoughtOpen:true,contexts:{},contextLoading:{},contextVersions:{},scrolls:{},matchVersion:0,dispatchedMatch:null});
+      }
+      renderPeople();selectPerson(state.people[0].id);setProgress(AXES.length);$('progress-label').textContent='六轴提取完成';
+      $('extraction-timing').hidden=false;$('extraction-timing').textContent='提取 '+number(result.seconds)+' s';
+    }
+    async function restoreExtraction(id){
+      if(!validExtractionId(id)){showExtractError('链接中的提取任务 ID 无效。未发送新的提取请求。');return;}
+      state.extracting=true;state.restoring=true;updateControls();$('extract-error').hidden=true;$('extract-progress').hidden=false;setProgress(0);
+      $('progress-label').textContent='读取已有提取任务';$('progress-help').textContent='仅查询已存在的任务与聊天历史，不会重新调用模型。';
+      try{
+        const result=await pollTask('/api/jobs/'+encodeURIComponent(id),task=>{if(task.progress)setProgress(task.progress.completed);},reconnecting=>{$('progress-label').textContent=reconnecting?'重连已有任务中…':'读取已有提取任务';});
+        if(!result||!Array.isArray(result.individuals))throw new Error('已有任务未返回完整的人物列表。');
+        const records=await Promise.all(result.individuals.map(person=>api('/api/people/'+encodeURIComponent(person.id))));
+        installExtraction({...result,individuals:records});rememberExtraction(id);
+        $('progress-label').textContent='已有提取任务已恢复';$('progress-help').textContent=records.length+' 位人物及其服务器历史已恢复，没有新增提取请求。';
+        $('results-subtitle').textContent='已恢复服务器人物与历史 · 左侧输入框为独立草稿';
+        for(const person of records)if(person.pending)resumeExistingChat(String(person.id),String(person.pending));
+        toast('已恢复 '+records.length+' 位人物与已有会话。');
+      }catch(error){showExtractError('恢复失败：'+error.message+' 未发送新的提取请求。');$('progress-label').textContent='已有任务尚未恢复';}
+      finally{state.extracting=false;state.restoring=false;updateControls();}
+    }
+    async function resumeExistingChat(id,jobId){
+      const chat=state.chats.get(id);if(!chat)return;
+      let questionAdded=false,mode='shared',modeKnown=false;
+      try{
+        const result=await pollTask('/api/jobs/'+encodeURIComponent(jobId),task=>{
+          if(!modeKnown){modeKnown=true;mode=normalizedMode(task.context_mode);chat.pendingMode=mode;chat.mode=mode;rememberMode(id,mode);if(state.selected===id){$('chat-input').value=currentThread(chat).draft;renderMessages();refreshContext(id,mode);}}
+          if(!questionAdded&&typeof task.question==='string'){questionAdded=true;currentThread(chat,mode).messages.push({role:'user',answer:task.question});if(state.selected===id)renderMessages();}
+          receiveChatProgress(id,task.progress);
+        },reconnecting=>{if(chat.reconnecting!==reconnecting){chat.reconnecting=reconnecting;updateStreamingView(id);}});
+        if(!result||typeof result!=='object')throw new Error('已有聊天任务未返回有效结果。');
+        if(result.context_mode!==undefined&&normalizedMode(result.context_mode)!==mode)throw new Error('已有聊天结果的上下文模式与任务不一致。');
+        applyDispatchedMatch(id,result.matched);
+        currentThread(chat,mode).messages.push({role:'assistant',...result,node_id:result.node_id??result.matched?.node_id??chat.dispatchedMatch?.node_id,complete:result.complete===true,answer:typeof result.answer==='string'?result.answer:'',reasoning:typeof result.reasoning==='string'?result.reasoning:''});
+      }catch(error){currentThread(chat,mode).messages.push({...retainedPartial(chat),error:'恢复已有回复失败：'+error.message+' 未重新发送消息。'});}
+      finally{chat.pending=false;chat.pendingMode=null;chat.reconnecting=false;chat.progress=null;renderPeople();if(state.selected===id){renderMessages();refreshContext(id,chat.mode);}updateControls();refreshPersonMatch(id);}
+    }
+    async function extract(){
+      if(state.extracting||anyChatBusy())return;
+      try{parseInput();}catch(error){showExtractError(error.message);return;}
+      state.extracting=true;updateControls();$('extract-error').hidden=true;$('extract-progress').hidden=false;$('progress-label').textContent='六轴并行提取中';setProgress(0);
+      $('progress-help').textContent='A / C / N / R / M / T 各一次请求，同时处理所有人物。';
+      let submitted=false;
+      try{
+        const ticket=await api('/api/extract',{method:'POST',body:JSON.stringify({text:$('json-input').value})});submitted=true;rememberExtraction(ticket.request_id);
+        const result=await pollTask(ticket.status_url,task=>{if(task.progress)setProgress(task.progress.completed);},reconnecting=>{$('progress-label').textContent=reconnecting?'重连进度查询中…':'六轴并行提取中';});
+        installExtraction(result);
+        $('progress-help').textContent=state.people.length+' 位人物已分别匹配真实网格。选择人物后再发送消息。';
+        $('results-subtitle').textContent='本次页面内独立匹配与对话 · 刷新后清空展示';
+        toast('已创建 '+state.people.length+' 位人物，尚未发起聊天。');
+      }catch(error){showExtractError(error.message+(submitted?'':' 提交状态未确认时，请先检查服务；页面未自动重发。'));$('progress-label').textContent='提取未完成';}
+      finally{state.extracting=false;updateControls();refreshStatus();}
+    }
+    function setProgress(value){const count=Math.max(0,Math.min(AXES.length,Number(value)||0));$('progress-count').textContent=count+' / '+AXES.length;$('progress-fill').style.width=(count/AXES.length*100)+'%';$('extract-progressbar').setAttribute('aria-valuenow',String(count));}
+    function renderPeople(){
+      $('people-count').textContent=String(state.people.length);$('people-grid').hidden=!state.people.length;$('empty-results').hidden=!!state.people.length;$('person-workspace').hidden=!state.people.length;
+      const fragment=document.createDocumentFragment();
+      state.people.forEach((person,index)=>{
+        const card=el('button','person-card'+(person.id===state.selected?' selected':''));card.type='button';card.setAttribute('aria-pressed',String(person.id===state.selected));card.setAttribute('aria-label','选择 '+person.name);card.addEventListener('click',()=>selectPerson(person.id));
+        const top=el('div','person-top');top.append(el('div','avatar tone-'+index%4,Array.from(String(person.name||'?'))[0]));const names=el('div');names.style.minWidth='0';names.append(el('div','person-name',person.name),el('div','person-node','网格 #'+person.matched.node_id));top.append(names);
+        const axes=el('div','person-mini-axes');AXES.forEach(axis=>{const label=el('span','mini-axis');label.append(el('b','',axis.key),document.createTextNode(LEVELS[person.levels[axis.key]]||'未知'));axes.append(label);});
+        const bottom=el('div','person-bottom');bottom.append(el('span','',Number.isFinite(person.matched.level_mismatches)?person.matched.level_mismatches===0?'六档位匹配':person.matched.level_mismatches+' 轴近似':'近似映射'));const chat=state.chats.get(person.id);bottom.append(el('span',chat?.pending?'chat-pending-mark':'',chat?.pending?'生成中…':person.id===state.selected?'正在查看 →':'查看人物 →'));
+        card.append(top,axes,bottom);fragment.append(card);
+      });$('people-grid').replaceChildren(fragment);
+    }
+    function applyPersonMatch(id,matched,rematchHistory){
+      const person=state.people.find(item=>item.id===id);
+      if(!person||!matched||!Number.isInteger(matched.node_id)||matched.node_id<0)return false;
+      person.matched={...matched};
+      if(Array.isArray(rematchHistory))person.rematch_history=rematchHistory.slice();
+      renderPeople();if(state.selected===id)renderProfile(person);
+      return true;
+    }
+    function applyDispatchedMatch(id,matched){
+      const chat=state.chats.get(id);if(!chat||!matched)return;
+      // Receipt/result describe this request's actual node, not another person's current selection.
+      chat.matchVersion=(chat.matchVersion||0)+1;
+      if(applyPersonMatch(id,matched))chat.dispatchedMatch={...matched};
+      updateStreamingView(id);
+    }
+    async function refreshPersonMatch(id){
+      const person=state.people.find(item=>item.id===id),chat=state.chats.get(id);if(!person||!chat)return;
+      const version=(chat.matchVersion||0)+1;chat.matchVersion=version;
+      try{
+        const fresh=await api('/api/people/'+encodeURIComponent(id));
+        if(state.chats.get(id)!==chat||state.people.find(item=>item.id===id)!==person||chat.matchVersion!==version)return;
+        if(String(fresh.id)!==id||!applyPersonMatch(id,fresh.matched,fresh.rematch_history))throw new Error('人物匹配信息无效。');
+      }catch(error){if(state.selected===id&&state.chats.get(id)===chat&&chat.matchVersion===version)toast('暂未刷新人物匹配：'+error.message+' 发送时服务仍会核验可用节点。');}
+    }
+    function selectPerson(id){
+      if(state.selected){const old=state.chats.get(state.selected);if(old){currentThread(old).draft=$('chat-input').value;old.scrolls[old.mode]=$('chat-messages').scrollTop;}}
+      state.selected=id;const person=state.people.find(item=>item.id===id);if(!person)return;
+      const chat=state.chats.get(id);$('chat-input').value=currentThread(chat)?.draft||'';renderPeople();renderProfile(person);renderMessages();updateControls();
+      if(chat.pending&&!chat.pendingMode){$('context-count').textContent='恢复模式中';$('context-content').replaceChildren(el('p','context-notice','正在确认已有请求的上下文模式…'));}else refreshContext(id,chat.mode);
+      refreshPersonMatch(id);
+    }
+    function switchMode(mode){
+      const id=state.selected,chat=state.chats.get(id);if(!chat||chat.pending||chat.resetting||state.extracting||chat.mode===mode)return;
+      currentThread(chat).draft=$('chat-input').value;chat.scrolls[chat.mode]=$('chat-messages').scrollTop;chat.mode=normalizedMode(mode);rememberMode(id,chat.mode);
+      $('chat-input').value=currentThread(chat).draft;renderMessages();updateControls();refreshContext(id,chat.mode);
+    }
+    function switchEmotion(emotion){
+      const chat=state.chats.get(state.selected);if(!chat||chat.pending||chat.resetting||state.extracting||!['none','joy','anger'].includes(emotion))return;
+      chat.emotion=emotion;updateControls();
+    }
+    function appendContextTurn(container,role,text){
+      const labels={customer:'客户',staff:'销售',user:'你',assistant:'人物'};
+      const turn=el('div','context-turn');turn.append(el('div','context-speaker',labels[role]||readable(role)),el('div','context-text',text));container.append(turn);
+    }
+    function appendSourceMaterial(container,source){
+      let parsed;try{parsed=JSON.parse(source);}catch{}
+      const dialogue=Array.isArray(parsed)?parsed:parsed?.dialogue;
+      if(Array.isArray(dialogue)){
+        if(parsed?.name)container.append(el('p','context-notice',parsed.name));
+        dialogue.forEach(turn=>{if(turn&&typeof turn==='object')appendContextTurn(container,turn.role||turn.speaker||'原始材料',readable(turn.text??turn.content??turn));else container.append(el('p','context-text',readable(turn)));});
+      }else if(typeof dialogue==='string'){container.append(el('p','context-text',dialogue));}
+      else container.append(el('p','context-text',source));
+    }
+    function renderContext(id,mode){
+      const chat=state.chats.get(id);if(!chat||state.selected!==id||chat.mode!==mode)return;
+      const data=chat.contexts[mode],content=$('context-content');
+      if(chat.contextLoading[mode]){$('context-count').textContent='正在读取';content.replaceChildren(el('p','context-notice','正在读取本模式实际携带的前置对话材料…'));return;}
+      if(!data){$('context-count').textContent='尚未读取';content.replaceChildren(el('p','context-notice','展开后可查看当前模式的前置对话材料。'));return;}
+      if(data.error){$('context-count').textContent='读取失败';content.replaceChildren(el('p','context-notice context-error',data.error+' 可点击刷新重试。'));return;}
+      const history=Array.isArray(data.history)?data.history:[],historyTurns=Number.isFinite(data.history_turns)?data.history_turns:history.length;
+      $('context-count').textContent=(mode==='shared'?'统一前置对话 ':'前置材料 ')+(data.source_material_included?'有':'0')+' · 本人物历史 '+historyTurns;
+      const fragment=document.createDocumentFragment();fragment.append(el('p','context-notice',readable(data.notice)));
+      if(mode==='none')fragment.append(el('p','context-notice','原始材料 0 · 历史 0。本模式已有记录仅供查看，不会带入下一次请求。'));
+      else{
+        fragment.append(el('h4','context-section-title','统一前置对话 · 所有人相同'));
+        fragment.append(el('p','context-notice','以下是所有人相同的预设对话，不是本轮模型生成。原始人物对话仅用于提取六维倾向，不带入聊天；后续历史只属于当前人物。'));
+        if(data.source_material_included&&typeof data.source_material==='string'&&data.source_material)appendSourceMaterial(fragment,data.source_material);else fragment.append(el('p','context-notice','本次不携带原始材料。'));
+        fragment.append(el('h4','context-section-title','本人物此前对话 · 仅最终回复'));
+        if(history.length)history.forEach(message=>{if(message&&['user','assistant'].includes(message.role))appendContextTurn(fragment,message.role,typeof message.content==='string'?message.content:readable(message.content));});else fragment.append(el('p','context-notice','历史 0，尚无此前对话。'));
+      }
+      content.replaceChildren(fragment);
+    }
+    async function refreshContext(id=state.selected,mode=state.chats.get(id)?.mode){
+      const chat=state.chats.get(id);if(!chat||!mode)return;
+      const version=(chat.contextVersions[mode]||0)+1;chat.contextVersions[mode]=version;chat.contextLoading[mode]=true;renderContext(id,mode);updateControls();
+      try{
+        const data=await api('/api/people/'+encodeURIComponent(id)+'/context?mode='+encodeURIComponent(mode));
+        if(data.context_mode!==mode)throw new Error('前置上下文模式与当前选择不一致。');
+        if(mode==='none'&&(data.source_material_included||data.source_material||(Array.isArray(data.history)&&data.history.length)))throw new Error('无上下文模式返回了额外材料，未将其作为空上下文展示。');
+        if(chat.contextVersions[mode]===version)chat.contexts[mode]=data;
+      }catch(error){if(chat.contextVersions[mode]===version)chat.contexts[mode]={error:'前置材料读取失败：'+error.message};}
+      finally{if(chat.contextVersions[mode]===version){chat.contextLoading[mode]=false;renderContext(id,mode);updateControls();}}
+    }
+    function scoreLevel(score){return typeof score==='number'&&Number.isFinite(score)?score<100/3?'low':score<200/3?'medium':'high':null;}
+    function renderProfile(person){
+      $('profile-name').textContent=person.name;$('profile-avatar').textContent=Array.from(String(person.name||'?'))[0];$('profile-node').textContent='真实匹配格点 #'+person.matched.node_id;$('chat-title').textContent='与 '+person.name+' 对话';
+      const axes=document.createDocumentFragment();
+      AXES.forEach(axis=>{
+        const level=person.levels[axis.key],row=el('div','axis-row');
+        const title=el('div','axis-title'),label=el('span','axis-label');label.append(el('b','axis-key',axis.key),el('span','',axis.label));title.append(label,el('span','axis-level','目标 '+LEVELS[level]));
+        const track=el('div','axis-track');track.setAttribute('aria-label',axis.label+'：推断目标'+LEVELS[level]);const bar=el('div','axis-bar');bar.style.width=(LEVEL_WIDTHS[level]??0)+'%';track.append(bar);
+        const values=el('div','axis-match');values.append(el('span','','目标档位示意 '+(LEVEL_WIDTHS[level]??'—')));
+        row.append(title,track,values);axes.append(row);
+      });$('profile-axes').replaceChildren(axes);
+      const mismatches=person.matched.level_mismatches;
+      $('mapping-note').textContent='蓝条20/50/80只表示推断目标档位，不是实测分数。\n'+(Number.isFinite(mismatches)?mismatches+' / 6 个维度未达到目标档位；':'')+'格点优先，未达目标高低档位时语义补充。补充后未复测。';
+      const evidence=document.createDocumentFragment();AXES.forEach(axis=>{const item=el('div','evidence-item');item.append(el('strong','',axis.key+' · '+axis.label),el('p','',readable(person.evidence?.[axis.key])),el('p','evidence-confidence','置信描述：'+(LEVELS[person.confidence?.[axis.key]]||readable(person.confidence?.[axis.key]))));evidence.append(item);});$('evidence-list').replaceChildren(evidence);
+    }
+    const nearBottom = target => target.scrollHeight-target.scrollTop-target.clientHeight<80;
+    function retainedPartial(chat){
+      const progress=chat.progress||{};
+      return {role:'assistant',complete:false,node_id:chat.dispatchedMatch?.node_id,reasoning:progress.reasoning||'',answer:progress.answer||'',raw_text:progress.raw_text||'',_thoughtOpen:chat.progressThoughtOpen};
+    }
+    function receiveChatProgress(id,progress){
+      const chat=state.chats.get(id);if(!chat||!progress||progress.streaming!==true)return;
+      // Progress is actual decoded model output, never a synthetic typing animation.
+      chat.progress={tokens:Number.isFinite(progress.tokens)?progress.tokens:null,seconds:Number.isFinite(progress.seconds)?progress.seconds:null,reasoning:typeof progress.reasoning==='string'?progress.reasoning:'',answer:typeof progress.answer==='string'?progress.answer:'',raw_text:typeof progress.raw_text==='string'?progress.raw_text:'',reasoning_complete:progress.reasoning_complete===true,streaming:true};
+      updateStreamingView(id);
+    }
+    function updateStreamingView(id){
+      const chat=state.chats.get(id),view=chat?.liveView;
+      if(!chat?.pending||state.selected!==id||!view||view.mode!==chat.mode)return;
+      const progress=chat.progress||{},target=$('chat-messages'),follow=nearBottom(target);
+      view.status.textContent=chat.reconnecting?'连接中断，正在恢复进度查询；已收到的内容保留。':progress.reasoning_complete?'思考已结束，回复生成中…':'正在思考 · 生成中…';
+      view.thought.hidden=!progress.reasoning;view.thoughtText.textContent=progress.reasoning||'';
+      view.thoughtLabel.textContent=progress.reasoning_complete?'模型生成的思考 · 已结束':'模型生成的思考 · 生成中';
+      view.answer.hidden=!progress.answer;view.answerText.textContent=progress.answer||'';
+      view.raw.hidden=!!progress.reasoning||!!progress.answer||!progress.raw_text;view.rawText.textContent=progress.raw_text||'';
+      const info=[];if(Number.isFinite(progress.seconds))info.push(number(progress.seconds)+' s');if(Number.isFinite(progress.tokens))info.push(progress.tokens+' tokens');if(chat.dispatchedMatch?.node_id!==undefined)info.push('本次网格 #'+chat.dispatchedMatch.node_id);view.meta.textContent=info.join(' · ');
+      if(follow)target.scrollTop=target.scrollHeight;
+      updateControls();
+    }
+    function renderMessages(){
+      const chat=state.chats.get(state.selected),person=state.people.find(item=>item.id===state.selected);if(!chat||!person)return;
+      const thread=currentThread(chat),target=$('chat-messages'),fragment=document.createDocumentFragment();
+      const key=state.selected+':'+chat.mode,same=target.conversationKey===key,follow=same&&nearBottom(target),oldScroll=target.scrollTop;
+      if(!thread.messages.length&&!chat.pending){const empty=el('div','chat-empty');empty.append(el('strong','','从同一段前置对话开始，认识 '+person.name),el('p','',chat.mode==='none'?'每次都是独立提问，不携带原始材料或历史；这里会保留本模式记录供你查看。':'所有人先看相同的销售介绍，并预设回应“我再考虑一下”。点击下方推销话术填入问题，再发送给当前人物，比较不同回应。'));fragment.append(empty);}
+      thread.messages.forEach(message=>{
+        const wrapper=el('div','message '+(message.role==='user'?'message-user':'message-assistant'));wrapper.append(el('div','message-author',message.role==='user'?'你':person.name));
+        if(message.reasoning){const thought=el('details','thought');thought.open=!!message._thoughtOpen;thought.addEventListener('toggle',()=>{message._thoughtOpen=thought.open;});thought.append(el('summary','','查看模型生成的思考'+(message.complete===false?' · 未完成':'')),el('pre','',message.reasoning));wrapper.append(thought);}
+        if(message.error){wrapper.append(el('div','message-bubble error-bubble',message.error));if(message.answer||(!message.reasoning&&message.raw_text)){const partial=el('details','thought');partial.append(el('summary','','查看已收到的生成片段 · 未加入上下文'),el('pre','',message.answer||message.raw_text));wrapper.append(partial);}}
+        else if(message.complete===false){
+          wrapper.append(el('div','message-bubble warning-bubble','本次生成未完成（'+(message.finish_reason||'服务未提供结束原因')+'）。未将不完整输出作为最终回复。'));
+          if(message.answer){const partial=el('details','thought');partial.append(el('summary','','查看实际返回的未完成文本'),el('pre','',message.answer));wrapper.append(partial);}
+        }else if(message.answer){wrapper.append(el('div','message-bubble',message.answer));}
+        else if(message.role!=='user'){wrapper.append(el('div','message-bubble warning-bubble','服务没有返回最终回复，未补写答案。'));}
+        if(message.role!=='user'){const info=[];if(Number.isFinite(message.seconds))info.push(number(message.seconds)+' s');if(Number.isFinite(message.tokens))info.push(message.tokens+' tokens');if(Number.isFinite(message.tokens_per_second))info.push(number(message.tokens_per_second)+' tok/s');if(message.node_id!==undefined)info.push('本次网格 #'+message.node_id);if(info.length)wrapper.append(el('div','message-meta',info.join(' · ')));}
+        fragment.append(wrapper);
+      });
+      chat.liveView=null;
+      if(chat.pending){
+        const wrapper=el('div','message message-assistant'),pending=el('div','pending-message'),status=el('span','');pending.append(el('span','spinner'),status);wrapper.append(pending);
+        const thought=el('details','thought'),thoughtLabel=el('summary',''),thoughtText=el('pre','');thought.open=chat.progressThoughtOpen!==false;thought.addEventListener('toggle',()=>{chat.progressThoughtOpen=thought.open;});thought.append(thoughtLabel,thoughtText);wrapper.append(thought);
+        const answer=el('div'),answerText=el('div','message-bubble');answer.append(el('div','message-meta','回复生成中 · 尚未确认完成'),answerText);wrapper.append(answer);
+        const raw=el('details','thought'),rawText=el('pre','');raw.append(el('summary','','原始生成片段 · 生成中'),rawText);wrapper.append(raw);
+        const meta=el('div','message-meta');wrapper.append(meta);fragment.append(wrapper);
+        chat.liveView={mode:chat.mode,status,thought,thoughtLabel,thoughtText,answer,answerText,raw,rawText,meta};
+      }
+      target.replaceChildren(fragment);target.conversationKey=key;
+      target.scrollTop=same?(follow?target.scrollHeight:oldScroll):(chat.scrolls[chat.mode]??target.scrollHeight);
+      $('suggestions').hidden=false;updateStreamingView(state.selected);updateControls();
+    }
+    async function sendMessage(event){
+      event?.preventDefault();const id=state.selected,chat=state.chats.get(id),question=$('chat-input').value.trim();
+      if(!id||!chat||!question||chat.pending||chat.resetting||state.extracting||Number(state.status?.workers_ready)<1||!state.status||state.status.loading)return;
+      const mode=chat.mode,emotion=normalizedEmotion(chat.emotion),thread=currentThread(chat,mode);chat.pending=true;chat.pendingMode=mode;chat.reconnecting=false;chat.progress=null;chat.progressThoughtOpen=true;chat.dispatchedMatch=null;chat.matchVersion=(chat.matchVersion||0)+1;thread.draft='';thread.messages.push({role:'user',answer:question});$('chat-input').value='';renderMessages();renderPeople();updateControls();
+      let submitted=false;
+      try{
+        const ticket=await api('/api/chat',{method:'POST',body:JSON.stringify({individual_id:id,question,context_mode:mode,emotion})});submitted=true;
+        applyDispatchedMatch(id,ticket.matched);
+        const result=await pollTask(ticket.status_url,task=>receiveChatProgress(id,task.progress),reconnecting=>{if(chat.reconnecting!==reconnecting){chat.reconnecting=reconnecting;updateStreamingView(id);}});
+        if(!result||typeof result!=='object')throw new Error('服务未返回有效的聊天结果。');
+        if(result.context_mode!==undefined&&normalizedMode(result.context_mode)!==mode)throw new Error('回复的上下文模式与本次发送不一致。');
+        applyDispatchedMatch(id,result.matched);
+        thread.messages.push({role:'assistant',...result,node_id:result.node_id??result.matched?.node_id??chat.dispatchedMatch?.node_id,complete:result.complete===true,answer:typeof result.answer==='string'?result.answer:'',reasoning:typeof result.reasoning==='string'?result.reasoning:'',_thoughtOpen:chat.progressThoughtOpen});
+      }catch(error){thread.messages.push({...retainedPartial(chat),error:error.message+(submitted?'':' 提交状态可能未确认，页面未自动重发；请先检查服务再决定下一步。')});}
+      finally{chat.pending=false;chat.pendingMode=null;chat.reconnecting=false;chat.progress=null;renderPeople();if(state.selected===id){renderMessages();refreshContext(id,chat.mode);}updateControls();refreshPersonMatch(id);}
+    }
+    async function resetChat(){
+      const id=state.selected,chat=state.chats.get(id);if(!chat||chat.pending||chat.resetting||state.extracting)return;
+      const mode=chat.mode,thread=currentThread(chat,mode);if(!thread.messages.length&&!thread.draft)return;
+      chat.resetting=true;updateControls();
+      try{await api('/api/people/'+encodeURIComponent(id)+'/history?mode='+encodeURIComponent(mode),{method:'DELETE'});thread.messages=[];thread.draft='';if(state.selected===id){$('chat-input').value='';renderMessages();refreshContext(id,mode);}toast('已清空当前人物的“'+modeName(mode)+'”记录。');}
+      catch(error){toast('无法重置会话：'+error.message);}
+      finally{chat.resetting=false;updateControls();}
+    }
+    $('extract-button').addEventListener('click',extract);$('json-input').addEventListener('input',updateInputSummary);$('load-sample').addEventListener('click',loadSample);$('choose-file').addEventListener('click',()=>$('file-input').click());$('file-input').addEventListener('change',event=>{readFile(event.target.files[0]);event.target.value='';});
+    $('manual-sample').addEventListener('click',loadManualSample);
+    $('download-sample').addEventListener('click',()=>{const url=URL.createObjectURL(new Blob([JSON.stringify(SAMPLE,null,2)],{type:'application/json;charset=utf-8'}));const link=el('a');link.href=url;link.download='personlab_huihui6_synthetic_sample.json';document.body.append(link);link.click();link.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);});
+    const zone=$('upload-zone');['dragenter','dragover'].forEach(type=>zone.addEventListener(type,event=>{event.preventDefault();if(!state.extracting)zone.classList.add('dragging');}));['dragleave','drop'].forEach(type=>zone.addEventListener(type,event=>{event.preventDefault();zone.classList.remove('dragging');if(type==='drop')readFile(event.dataTransfer.files[0]);}));
+    $('refresh-status').addEventListener('click',refreshStatus);$('chat-form').addEventListener('submit',sendMessage);$('reset-chat').addEventListener('click',resetChat);
+    $('chat-input').addEventListener('input',()=>{const chat=state.chats.get(state.selected);if(chat)currentThread(chat).draft=$('chat-input').value;updateControls();});
+    $('chat-input').addEventListener('keydown',event=>{if(event.key==='Enter'&&!event.shiftKey&&!event.isComposing){event.preventDefault();sendMessage();}});
+    document.querySelectorAll('.suggestion').forEach(button=>button.addEventListener('click',()=>{const chat=state.chats.get(state.selected);if(!chat||chat.pending||chat.resetting||state.extracting)return;$('chat-input').value=button.textContent;currentThread(chat).draft=button.textContent;updateControls();$('chat-input').focus();}));
+    document.querySelectorAll('.mode-button').forEach(button=>button.addEventListener('click',()=>switchMode(button.dataset.mode)));
+    document.querySelectorAll('.emotion-button').forEach(button=>button.addEventListener('click',()=>switchEmotion(button.dataset.emotion)));
+    $('refresh-context').addEventListener('click',()=>refreshContext());
+    $('workspace-nav').addEventListener('click',()=>$('workspace').scrollIntoView({behavior:'smooth'}));$('help-nav').addEventListener('click',()=>$('help-dialog').showModal());$('close-help').addEventListener('click',()=>$('help-dialog').close());
+    window.addEventListener('beforeunload',event=>{if(state.extracting||anyChatBusy()){event.preventDefault();event.returnValue='';}});
+    window.addEventListener('pageshow',event=>{if(event.persisted)window.location.reload();});
+    // 每次打开或刷新都从空白工作台开始；只保留本次页面内的对话。
+    loadSample();refreshStatus();setInterval(refreshStatus,12000);
+  </script>
+</body>
+</html>

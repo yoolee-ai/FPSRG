@@ -1,0 +1,323 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "file": "off_engine/engine.py",
+      "source_snapshot": "off-refinement-20261010",
+      "source_file": "engine.py",
+      "source_sha256": "a55fd80dd8d4a8b572bf604644c0129e9766b9af0a90ccc5efc13652336655b7",
+      "export_sha256": "ab2889e18cc0110678361df80e110d1cdba2cdeff6f7aedec73af3bca56261a4",
+      "module_AST_unchanged": true,
+      "changes": "Scientific source retained; line-ending/trailing-newline normalization only."
+    },
+    {
+      "file": "off_engine/ka_engine.py",
+      "source_snapshot": "off-refinement-20261010",
+      "source_file": "ka_engine.py",
+      "source_sha256": "ae297e1e85b48bdc61542802c682c476964bbcee9ba55fa06551f813e596de9b",
+      "export_sha256": "916638a44f1292e09d5d9fd5399bd23732175e7936451f31928090e3181b9fdb",
+      "changes": "Five-axis profile selected from configuration; original RTVMS profile and scientific losses retained."
+    },
+    {
+      "file": "off_engine/historical_engine.py",
+      "source_snapshot": "off-refinement-20261010",
+      "source_file": "historical_engine.py",
+      "source_sha256": "619769df529bbab76ea24dacec35813d6edc13f5da887126b9609b546cb76f9e",
+      "export_sha256": "e6bc54d696141a0deb63f6b88cea2129bfdc8b081285131403fe8017eaa165dd",
+      "module_AST_unchanged": true,
+      "changes": "Scientific source retained; line-ending/trailing-newline normalization only."
+    },
+    {
+      "file": "off_engine/full_sequence.py",
+      "source_snapshot": "off-refinement-20261010",
+      "source_file": "full_sequence.py",
+      "source_sha256": "00aceb7ad92cd39b76df341fe6074853d252c19271cfad613604f778c0b83288",
+      "export_sha256": "ad369c541b6d56cb9ca5a173c16c6a46f881688b6903e33f4b30241029fef16b",
+      "module_AST_unchanged": true,
+      "changes": "Scientific source retained; line-ending/trailing-newline normalization only."
+    },
+    {
+      "file": "off_engine/protocol.py",
+      "source_snapshot": "off-refinement-20261010",
+      "source_file": "protocol.py",
+      "source_sha256": "dd3fd5dc8a5d930dce658d61b18a85cbbac1ff36e666355ae35bd95e824749fc",
+      "export_sha256": "676c5ccc00e588efc8a316df305d1bf024aa5fb36d8d8def767a06c76bcc7686",
+      "changes": "Five-axis profile selected from configuration; original RTVMS profile and scientific losses retained."
+    },
+    {
+      "file": "off_engine/legacy_protocol.py",
+      "source_snapshot": "off-refinement-20261010",
+      "source_file": "legacy_protocol.py",
+      "source_sha256": "fab78dd2d84533c8ff5cfb1e035dbd47b9653397e1a73b58cc2837f8bf082256",
+      "export_sha256": "f3ef0070488ab960481a3438eb3533da84d77b775431d3fef74c907b23c5968e",
+      "module_AST_unchanged": true,
+      "changes": "Scientific source retained; line-ending/trailing-newline normalization only."
+    },
+    {
+      "file": "off_engine/selection.py",
+      "source_snapshot": "off-refinement-20261010",
+      "source_file": "selection.py",
+      "source_sha256": "cd4dcc047774f6d6b36acda4c59ae0314a3b5074afe294da6dbed15d5759c9c8",
+      "export_sha256": "fad094408d6ec2c1ed907ef5e5d2285632ea1d4246e354d6189b37e37d9c61a5",
+      "module_AST_unchanged": true,
+      "changes": "Scientific source retained; line-ending/trailing-newline normalization only."
+    },
+    {
+      "file": "off_engine/stable_mass.py",
+      "source_snapshot": "off-refinement-20261010",
+      "source_file": "stable_mass.py",
+      "source_sha256": "b062359cf43d503f3183e531985bbc999b061f086b79a304447bb3cf4bda1002",
+      "export_sha256": "11b3cb1ab8114476e76ef13bb14288390dfe82a99270b0dbb6039f60a733a2f2",
+      "module_AST_unchanged": true,
+      "changes": "Scientific source retained; line-ending/trailing-newline normalization only."
+    },
+    {
+      "file": "off_engine/model_loader.py",
+      "source_snapshot": "off-refinement-20261010",
+      "source_file": "model_loader.py",
+      "source_sha256": "7bbf42802f49af5c6e8369315f52856e0ef9e4684294ab8d7cf4cca69109611b",
+      "export_sha256": "72b2f743063fc28750b7b3f81cd4499b13884c6fe77639060d7e57a7e174f3c0",
+      "changes": "Adapter hash verification omits unneeded training_state.pt; model precision and tensor checks retained."
+    },
+    {
+      "file": "off_engine/models.py",
+      "source_snapshot": "off-refinement-20261010",
+      "source_file": "models.py",
+      "source_sha256": "d64f06b54ee4d6c731ecf997c445360729d908a00d3e25c548f8fb5e6ad5f665",
+      "export_sha256": "284f6b70a28403efbce10b3fb02d3c593838e20bc17b75c541dbfc98b79fcc4c",
+      "module_AST_unchanged": true,
+      "changes": "Scientific source retained; line-ending/trailing-newline normalization only."
+    },
+    {
+      "file": "off_engine/study.py",
+      "source_snapshot": "off-refinement-20261010",
+      "source_file": "study.py",
+      "source_sha256": "2c2a008cfe25c1fcfc81a6f06c325528583f7309734df3034f6030f5b03501d2",
+      "export_sha256": "a01965348af4a2e891fb95c1e16088fec026eaefcb381f8f05798348f4a1b692",
+      "changes": "Five-axis profile selected from configuration; original RTVMS profile and scientific losses retained."
+    },
+    {
+      "file": "off_engine/behavior_input_v3.py",
+      "source_snapshot": "off-refinement-20261010",
+      "source_file": "behavior_input_v3.py",
+      "source_sha256": "01c2bb0369718d5dc251d743d02feb6008c47aa1c12118aced94b36a146a4a9c",
+      "export_sha256": "841d05900f8add145daa1512491c6c257c1c613ad588fd91aa9a9e61f648a44a",
+      "module_AST_unchanged": true,
+      "changes": "Scientific source retained; line-ending/trailing-newline normalization only."
+    },
+    {
+      "file": "off_engine/catalog.py",
+      "source_snapshot": "off-refinement-20261010",
+      "source_file": "catalog.py",
+      "source_sha256": "f499c5eb2a8e39abb15d46dace9a5322dede2aebfff3b673eae66c1433361253",
+      "export_sha256": "cf3be0749c82a7ba6750e3a8c3fdeced57a429d9bb7d500c37f3c98dd0239db1",
+      "module_AST_unchanged": true,
+      "changes": "Scientific source retained; line-ending/trailing-newline normalization only."
+    },
+    {
+      "file": "off_engine/acceleration.py",
+      "source_snapshot": "off-refinement-20261010",
+      "source_file": "acceleration.py",
+      "source_sha256": "aec6e3c0bc2d5a939918f976edfcc4be0edea5832a1ec8fee72e72a74e8c7c33",
+      "export_sha256": "b3d870053f15de796ac6bc07495b5c5162f426cc2bc697d7a271d0828f92ad39",
+      "module_AST_unchanged": true,
+      "changes": "Scientific source retained; line-ending/trailing-newline normalization only."
+    },
+    {
+      "file": "grid/joint_engine.py",
+      "source_snapshot": "ten-off-range1-20261012",
+      "source_file": "joint_engine.py",
+      "source_sha256": "11ec1a3b23ea62defc98e13dc725ee9dac14352f5a5c3dc3d8e4041d9707efa4",
+      "export_sha256": "ba2b380f447de44735bbcf030fc531ac20d8191294e6003a9277027c25bccfde",
+      "module_AST_unchanged": true,
+      "changes": "Scientific source retained; line-ending/trailing-newline normalization only."
+    },
+    {
+      "file": "grid/measurement.py",
+      "source_snapshot": "ten-off-range1-20261012",
+      "source_file": "measurement.py",
+      "source_sha256": "e112c2c39f402ce8a900bc9309472c1deb5f8a57b922f80499fd6530c936118c",
+      "export_sha256": "d3b353759bceae3ec7e065810ce1eb87d29f180f63b7d64ea0f99747667cc495",
+      "module_AST_unchanged": true,
+      "changes": "Scientific source retained; line-ending/trailing-newline normalization only."
+    },
+    {
+      "file": "grid/persistent_engine.py",
+      "source_snapshot": "ten-off-range1-20261012",
+      "source_file": "persistent_engine.py",
+      "source_sha256": "71897f8a65551240755c26dd37d50c505a74bee494e3c3a0807a99bdb110fa09",
+      "export_sha256": "8f1d6d1b7a44929a0408ca76c85e64bce1ab0c69038cebf5f5103f944b5587b3",
+      "module_AST_unchanged": true,
+      "changes": "Scientific source retained; line-ending/trailing-newline normalization only."
+    },
+    {
+      "file": "grid/accelerated_engine.py",
+      "source_snapshot": "ten-off-range1-20261012",
+      "source_file": "accelerated_engine.py",
+      "source_sha256": "a0905fefecfa4ebcfd50f448a07c5ff47cd8dded185802b7fc840d41d0484211",
+      "export_sha256": "9129a98144e093e90dcae419074e88826aa56506e070542260c02d0050c457dd",
+      "module_AST_unchanged": true,
+      "changes": "Scientific source retained; line-ending/trailing-newline normalization only."
+    },
+    {
+      "file": "grid/batch_prefix_ops.py",
+      "source_snapshot": "ten-off-range1-20261012",
+      "source_file": "batch_prefix_ops.py",
+      "source_sha256": "d96d24de9d33f95ff79df4fede06fc5f6e6b3f032fef1350405d312f5d232d59",
+      "export_sha256": "065c66a1a71dd5227389432e2667c804d04703d406c09ceefe90bfc4b03a54c5",
+      "module_AST_unchanged": true,
+      "changes": "Scientific source retained; line-ending/trailing-newline normalization only."
+    },
+    {
+      "file": "grid/fused_mlp_ops.py",
+      "source_snapshot": "ten-off-range1-20261012",
+      "source_file": "fused_mlp_ops.py",
+      "source_sha256": "504af4174f78427ed243535c7a5c52409c6ef3e780547fcaf530a740586c1ce2",
+      "export_sha256": "58cdf512671ef0f646899e28ced1f3385e793bdd2dfdc6bb56f5cf329dc8418a",
+      "module_AST_unchanged": true,
+      "changes": "Scientific source retained; line-ending/trailing-newline normalization only."
+    },
+    {
+      "file": "thinking_engine/vector_ops.py",
+      "source_snapshot": "huihui-full1500e2-six-20261103",
+      "source_file": "vector_ops.py",
+      "source_sha256": "72566b92d2dbc41805e2f0a9735e9102eda5c1204c678bd6939f3e5313e20956",
+      "export_sha256": "d868eb39f5793b1b0ce73fbdc6ccb18391f8fbf92888fea506f23c1615661523",
+      "module_AST_unchanged": true,
+      "changes": "Scientific source retained; line-ending/trailing-newline normalization only."
+    },
+    {
+      "file": "thinking_engine/train_math.py",
+      "source_snapshot": "huihui-full1500e2-six-20261103",
+      "source_file": "train_math.py",
+      "source_sha256": "8f7bf30a29bf0554b154dd61216fad186fb9a1359c4b818254247a1c92e309a7",
+      "export_sha256": "e16ed3797bc60a0ce05cb7b94c9d9617d0522b5cd7811c0c91d9a0f956b00d74",
+      "module_AST_unchanged": true,
+      "changes": "Scientific source retained; line-ending/trailing-newline normalization only."
+    },
+    {
+      "file": "thinking_engine/refinement.py",
+      "source_snapshot": "huihui-full1500e2-six-20261103",
+      "source_file": "train_worker.py",
+      "source_sha256": "1c75961a0d0523fd6d84af373e16c2e708b21d3c41e21a1ca786dae3227b600f",
+      "export_sha256": "27126afa1473eb4f187cfd286ca959635797f406eec569d068176c290a537601",
+      "retained_functions": [
+        "check_stop",
+        "candidate_lock",
+        "atomic_torch_save",
+        "load_latest",
+        "save_checkpoint",
+        "completed",
+        "fresh_contrast",
+        "fit_candidate",
+        "training_lineage"
+      ],
+      "function_AST_unchanged": true,
+      "changes": "Selected functions retained; local imports/support only, no cluster entry point."
+    },
+    {
+      "file": "thinking_engine/model_loader.py",
+      "source_snapshot": "huihui-full1500e2-six-20261103",
+      "source_file": "model_loader.py",
+      "source_sha256": "e2593ea67b57dac3ea8539ce33023a8f25cc5d176ea063b9691982960c4d48f2",
+      "export_sha256": "66c3dc6b654f5f8319f84f3ba8e93b4f11bf92d275e2468864396bbeb99db197",
+      "retained_functions": [
+        "checkpointing"
+      ],
+      "function_AST_unchanged": true,
+      "changes": "Selected functions retained; local imports/support only, no cluster entry point."
+    },
+    {
+      "file": "thinking_engine/scoring.py",
+      "source_snapshot": "huihui-full1500e2-six-20261103",
+      "source_file": "data.py",
+      "source_sha256": "29fd427363534b84fc48bc5b92804795ff1e3f301373cd1c4cde9f81ab4b6ed8",
+      "export_sha256": "0ba66487dddd070ced1b41ae21f7369d03c1f9e30448063a305882c9fd9cdf24",
+      "retained_functions": [
+        "score",
+        "_stats",
+        "summary"
+      ],
+      "function_AST_unchanged": true,
+      "changes": "Selected functions retained; local imports/support only, no cluster entry point."
+    },
+    {
+      "file": "grid/coverage.py",
+      "source_snapshot": "paper-coverage-20261014",
+      "source_file": "compute_completed_coverage.py",
+      "source_sha256": "1092838df74f67d1d36ebd3589e2eff14af19c49388ce86111384ce2c74c4135",
+      "export_sha256": "593a9ce80cde017899a44bb63963fff58f31afac06f911e2212e1492b4341203",
+      "retained_functions": [
+        "measure"
+      ],
+      "function_AST_unchanged": true,
+      "changes": "Selected functions retained; local imports/support only, no cluster entry point."
+    },
+    {
+      "file": "thinking_engine/selection.py",
+      "source_snapshot": "huihui-full1500e2-six-20261103",
+      "source_file": "controller.py",
+      "source_sha256": "e7323d8b52b4d36f9bdff2792215858ab434dfff58f1e3a3896969a363128d35",
+      "export_sha256": "49706f8bc26545e80fc94e4bd7160dacb910e40b70091cdc65308dbd018119e0",
+      "changes": "Selected original development selector, scoring import renamed; no fleet code.",
+      "retained_functions": [
+        "output_records",
+        "job_of",
+        "select"
+      ],
+      "function_AST_unchanged": true
+    },
+    {
+      "file": "post_training/lora_objective.py",
+      "source_snapshot": "persononly1000-lora-20261002",
+      "source_file": "train_math.py",
+      "source_sha256": "cc299aee829541f817726bd6657c3f87c42971c8dd71e23f0e3b5f23b8a801f2",
+      "export_sha256": "48a7864aa4d3c6e4be10791ced916dae4dfd3e580c0d4d7ec324e5514c384d32",
+      "changes": "Original objective and schedule; no changes.",
+      "module_AST_unchanged": true
+    },
+    {
+      "file": "post_training/full_sft_objective.py",
+      "source_snapshot": "huihui-full1500-sft-20261103",
+      "source_file": "train.py",
+      "source_sha256": "1ba847892b6fd9bfd3726a48834a0b967f5af2c5b48f1e86f4afb02febbc7ff4",
+      "export_sha256": "61623b5a95a0c5d73ef818b6e064155796f12b6c441fc271ffc2ececa9deb7b6",
+      "changes": "Original objective functions with local plan values; no cluster/weight-loading code.",
+      "retained_functions": [
+        "validate_data",
+        "learning_rate",
+        "batch_target_tokens",
+        "objective_scale",
+        "rank_indices",
+        "make_loss_module"
+      ],
+      "function_AST_unchanged": true
+    }
+  ],
+  "new_portable_support": [
+    "off_engine/common.py",
+    "off_engine/runtime.py",
+    "off_engine/config.example.json",
+    "thinking_engine/common.py",
+    "tests/test_cpu.py"
+  ],
+  "models": {
+    "ten_off": {
+      "parent_commit_sha256": "cb2f77e43b96830130d9ffe2ec93a630aae4ad8892d46a96668317c0603ea0fe",
+      "lora": true,
+      "merged": false
+    },
+    "huihui_six": {
+      "parent_commit_sha256": "31046f6da875da4054f844712683c39197fd68f95fd5cbff94e70362f49f9f2c",
+      "lora": false,
+      "full_parameter_epoch": 2
+    }
+  },
+  "validation": {
+    "cpu_tests": 11,
+    "passed": 11,
+    "gpu_test_performed": false,
+    "model_generation_performed": false,
+    "private_path_scan_matches": 0
+  }
+}

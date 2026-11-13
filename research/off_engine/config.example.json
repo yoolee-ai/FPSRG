@@ -1,0 +1,16 @@
+{
+  "study": "fpsrg_off_vector_refinement",
+  "root_run": "${FPSRG_HOME}/outputs/off",
+  "run": "${FPSRG_HOME}/outputs/off/training",
+  "model": "${FPSRG_HOME}/models/qwen35-base",
+  "adapter_checkpoint": "${FPSRG_HOME}/models/persononly-lora",
+  "expected_parent_commit_sha256": "cb2f77e43b96830130d9ffe2ec93a630aae4ad8892d46a96668317c0603ea0fe",
+  "parent_model_version": "qwen35_persononly1000_fresh_step0125",
+  "system": "你是一个人，根据场景事实回答。",
+  "axes": ["R", "T", "V", "M", "S"],
+  "train_steps": 240,
+  "seed": 2026101001,
+  "native_template_on": {"enable_thinking": true},
+  "injection_scope": "full_sequence_nonpadding",
+  "workers": 1
+}
