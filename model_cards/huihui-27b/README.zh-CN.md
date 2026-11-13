@@ -10,7 +10,7 @@ FPSRG–Huihui–27B 面向第一人称的交互模拟。训练覆盖日常交�
 
 配合六维向量格点，可以选择不同的人格配置；在对话中叠加喜悦或愤怒；让不同人物带着不同提示词和各自的历史，共享同一份模型运行。
 
-[English](README.md) · [推理与 Demo](https://github.com/yoolee-ai/FPSRG) · [上游模型](https://huggingface.co/huihui-ai/Huihui-Qwen3.8-27B-abliterated)
+[English](README.md) · [论文](https://arxiv.org/html/2611.16445v1) · [推理与 Demo](https://github.com/yoolee-ai/FPSRG) · [上游模型](https://huggingface.co/huihui-ai/Huihui-Qwen3.8-27B-abliterated)
 
 **权重获取：** 如需我们训练的灰灰权重或其他项目模型权重，请邮件联系 [prm21@mails.tsinghua.edu.cn](mailto:prm21@mails.tsinghua.edu.cn)。权重后续也会通过 [FPSRG GitHub 仓库](https://github.com/yoolee-ai/FPSRG)发布。
 

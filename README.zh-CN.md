@@ -1,6 +1,6 @@
 # FPSRG
 
-[English](README.md)
+[English](README.md) · [论文 · arXiv:2611.16445](https://arxiv.org/html/2611.16445v1)
 
 ![一个模型，多样的人](model_cards/huihui-27b/assets/one-model-many-people.png)
 
@@ -70,5 +70,7 @@ FPSRG/
 
 **FPSRG: Heterogeneous User Simulation — First-Person Post-Training and Multidimensional Semantic Response Grids**  
 Ruimin Pei、Haibo Liu、Fan Zhang、Xunhua Guo。
+
+[阅读 arXiv 论文（v1）](https://arxiv.org/html/2611.16445v1)。
 
 本仓库包含方法实现及配套实验资源。上游组件见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。

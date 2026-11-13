@@ -28,7 +28,7 @@ FPSRG–Huihui–27B is a first-person model for conversations with people who h
 
 Pair the model with its six-dimensional vector catalog to select measured personality configurations. Add joy or anger during a conversation. Serve different people, different prompts, and separate histories from **one loaded model**.
 
-[中文](README.zh-CN.md) · [Runtime & demo](https://github.com/yoolee-ai/FPSRG) · [Upstream model](https://huggingface.co/huihui-ai/Huihui-Qwen3.8-27B-abliterated)
+[中文](README.zh-CN.md) · [Paper](https://arxiv.org/html/2611.16445v1) · [Runtime & demo](https://github.com/yoolee-ai/FPSRG) · [Upstream model](https://huggingface.co/huihui-ai/Huihui-Qwen3.8-27B-abliterated)
 
 **Get the weights:** email [prm21@mails.tsinghua.edu.cn](mailto:prm21@mails.tsinghua.edu.cn) for the trained Huihui model or other project weights. The weights will also be released through the [FPSRG GitHub repository](https://github.com/yoolee-ai/FPSRG) later.
 
