@@ -314,8 +314,8 @@
     }
   },
   "validation": {
-    "cpu_tests": 11,
-    "passed": 11,
+    "cpu_tests": 13,
+    "passed": 13,
     "gpu_test_performed": false,
     "model_generation_performed": false,
     "private_path_scan_matches": 0
